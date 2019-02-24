@@ -17,6 +17,12 @@ SIGMA_2 = torch.tensor([math.exp(-6)])
 MU_PRIOR = 0
 SIGMA_PRIOR = torch.tensor([math.exp(-0)])
 
+# Initial weight hyperparameters
+MU_WEIGHTS = (-0.5,0.5)
+RHO_WEIGHTS = (-4, -2)
+MU_BIAS = (-0.5, 0.5)
+RHO_BIAS = (-4, -2)
+
 # Loss variance
 SIGMA = torch.tensor([math.exp(-2)])
 
@@ -66,12 +72,12 @@ class BayesianLayer(nn.Module):
     self.activation_type = activation_type
     self.mu_weights = nn.Parameter(torch.Tensor(output_size, input_size))
     self.rho_weights = nn.Parameter(torch.Tensor(output_size, input_size))
-    self.mu_weights.data.uniform_(-0.5, 0.5)
-    self.rho_weights.data.uniform_(-4, -2)
+    self.mu_weights.data.uniform_(*MU_WEIGHTS)
+    self.rho_weights.data.uniform_(*RHO_WEIGHTS)
     self.mu_bias = nn.Parameter(torch.Tensor(output_size))
     self.rho_bias = nn.Parameter(torch.Tensor(output_size))
-    self.mu_bias.data.uniform_(-0.5, 0.5)
-    self.rho_bias.data.uniform_(-4, -2)
+    self.mu_bias.data.uniform_(*MU_BIAS)
+    self.rho_bias.data.uniform_(*RHO_BIAS)
     if prior_type == PriorType.MIXTURE:
       self.prior_weights = GaussianMixture(
           prior_params['pi'], prior_params['sigma1'], prior_params['sigma2'])
@@ -124,7 +130,7 @@ class BayesianLayer(nn.Module):
     elif self.activation_type == ActivationType.NONE:
       output = linear_output
     else:
-      raise NotImplementedError
+      raise ValueError('activation_type {} not support'.format(self.activation_type))
     return output
 
   def extra_repr(self):
