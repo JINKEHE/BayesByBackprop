@@ -122,7 +122,7 @@ class BayesianLayer(nn.Module):
     if self.activation_type == ActivationType.RELU:
       output = torch.relu(linear_output)
     elif self.activation_type == ActivationType.SOFTMAX:
-      output = torch.softmax(linear_output)
+      output = torch.softmax(linear_output, 1)
     elif self.activation_type == ActivationType.SIGMOID:
       output = torch.sigmoid(linear_output)
     elif self.activation_type == ActivationType.TANH:
