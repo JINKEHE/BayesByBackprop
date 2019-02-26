@@ -184,7 +184,7 @@ class BayesianNN(nn.Module):
       log_posterior += layer.log_posterior
     return log_posterior
 
-  def cost_function(self, inputs, targets, num_samples, num_batches, k):
+  def cost_function(self, inputs, targets, num_samples, num_batches):
     sum_log_posterior = 0
     sum_log_prior = 0
     sum_negative_log_likelihood = 0
