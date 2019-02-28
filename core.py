@@ -157,7 +157,7 @@ class BayesianLayer(nn.Module):
     if self.activation_type == ActivationType.RELU:
       output = torch.relu(linear_output)
     elif self.activation_type == ActivationType.SOFTMAX:
-      output = torch.softmax(linear_output, 1)
+      output = torch.log_softmax(linear_output, 1)
     elif self.activation_type == ActivationType.SIGMOID:
       output = torch.sigmoid(linear_output)
     elif self.activation_type == ActivationType.TANH:
@@ -228,7 +228,12 @@ class BayesianNN(nn.Module):
       sum_log_posterior += self.log_posterior()
       sum_log_prior += self.log_prior()
       if self.task_type == TaskType.CLASSIFICATION:
-        negative_log_likelihood = nn.functional.nll_loss(outputs, targets)
+         # the outputs are from log_softmax activation function
+         log_probs = outputs[range(targets.size()[0]), targets]
+         # the negative sum of log probs is the negative log likelihood
+         # for this sampled neural network on this minibatch
+         negative_log_likelihood = -log_probs.sum()
+         # negative_log_likelihood = nn.functional.nll_loss(outputs, targets)
       elif self.task_type == TaskType.REGRESSION:
          negative_log_likelihood = - dist.Normal(
              targets, SIGMA).log_prob(outputs).sum()
