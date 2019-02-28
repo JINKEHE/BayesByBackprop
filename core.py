@@ -8,14 +8,28 @@ from torch import nn
 from torch import distributions as dist
 from enum import Enum
 
+# boolean variable that indicates whether or not we have gpu...
+use_cuda = torch.cuda.is_available()
+print("Use GPU: {}".format(use_cuda))
+
 # Default gaussian mixture parameters
 PI = 0.5
+
 SIGMA_1 = torch.tensor([math.exp(-0)])
 SIGMA_2 = torch.tensor([math.exp(-6)])
+
+# place tensor in GPU if use_cuda
+if use_cuda:
+  SIGMA_1 = SIGMA_1.cuda()
+  SIGMA_2 = SIGMA_2.cuda()
 
 # Default gaussian parameters
 MU_PRIOR = 0
 SIGMA_PRIOR = torch.tensor([math.exp(-0)])
+
+# place tensor in GPU if use_cuda
+if use_cuda:
+    SIGMA_PRIOR = SIGMA_PRIOR.cuda()
 
 # Initial weight hyperparameters
 MU_WEIGHTS = (-0.5,0.5)
@@ -25,6 +39,10 @@ RHO_BIAS = (-4, -2)
 
 # Loss variance
 SIGMA = torch.tensor([math.exp(-2)])
+
+# place tensor in GPU if use_cuda
+if use_cuda:
+    SIGMA = SIGMA.cuda()
 
 class PriorType(Enum):
   MIXTURE = 1
@@ -48,7 +66,9 @@ class GaussianMixture(object):
     self.sigma1 = sigma1
     self.sigma2 = sigma2
 
+  # arguments of dist.Normal() should be tensors rather than scalars
   def log_prob(self, weights):
+    # TODO: need to fix here to use gpu
     normal_density1 = torch.exp(
         dist.Normal(0.0, self.sigma1).log_prob(weights))
     normal_density2 = torch.exp(
@@ -70,14 +90,28 @@ class BayesianLayer(nn.Module):
     self.input_size = input_size
     self.output_size = output_size
     self.activation_type = activation_type
-    self.mu_weights = nn.Parameter(torch.Tensor(output_size, input_size))
-    self.rho_weights = nn.Parameter(torch.Tensor(output_size, input_size))
+
+    # create torch variables
+    if not use_cuda:
+        self.mu_weights = nn.Parameter(torch.Tensor(output_size, input_size))
+        self.rho_weights = nn.Parameter(torch.Tensor(output_size, input_size))
+        self.mu_bias = nn.Parameter(torch.Tensor(output_size))
+        self.rho_bias = nn.Parameter(torch.Tensor(output_size))
+        self.normal_dist = dist.Normal(torch.Tensor([0]), torch.Tensor([1]))
+    else:
+        self.mu_weights = nn.Parameter(torch.Tensor(output_size, input_size).cuda())
+        self.rho_weights = nn.Parameter(torch.Tensor(output_size, input_size).cuda())
+        self.mu_bias = nn.Parameter(torch.Tensor(output_size).cuda())
+        self.rho_bias = nn.Parameter(torch.Tensor(output_size).cuda())
+        self.normal_dist = dist.Normal(torch.Tensor([0]).cuda(), torch.Tensor([1]).cuda())
+
+    # initialize variables
     self.mu_weights.data.uniform_(*MU_WEIGHTS)
     self.rho_weights.data.uniform_(*RHO_WEIGHTS)
-    self.mu_bias = nn.Parameter(torch.Tensor(output_size))
-    self.rho_bias = nn.Parameter(torch.Tensor(output_size))
     self.mu_bias.data.uniform_(*MU_BIAS)
     self.rho_bias.data.uniform_(*RHO_BIAS)
+
+
     if prior_type == PriorType.MIXTURE:
       self.prior_weights = GaussianMixture(
           prior_params['pi'], prior_params['sigma1'], prior_params['sigma2'])
@@ -92,7 +126,7 @@ class BayesianLayer(nn.Module):
     self.log_posterior = 0
 
   def _compute_gaussian_sample(self, mu, rho):
-    epsilon = dist.Normal(0, 1).sample(rho.size())
+    epsilon = self.normal_dist.sample(rho.size()).squeeze(-1)
     return mu + torch.log2(1 + torch.exp(rho)) * epsilon
 
   def forward(self, input_data):
@@ -117,6 +151,7 @@ class BayesianLayer(nn.Module):
     else:
       weights = self.mu_weights
       bias = self.mu_bias
+
     linear_output = nn.functional.linear(input_data, weights, bias)
     output = linear_output
     if self.activation_type == ActivationType.RELU:
