@@ -129,8 +129,8 @@ class BayesianLayer(nn.Module):
     epsilon = self.normal_dist.sample(rho.size()).squeeze(-1)
     return mu + torch.log2(1 + torch.exp(rho)) * epsilon
 
-  def forward(self, input_data):
-    if self.training:
+  def forward(self, input_data, sample=False):
+    if self.training or sample:
       weights = self._compute_gaussian_sample(self.mu_weights, self.rho_weights)
       bias = self._compute_gaussian_sample(self.mu_bias, self.rho_bias)
       self.log_prior = (self.prior_weights.log_prob(weights).sum() +
@@ -199,13 +199,24 @@ class BayesianNN(nn.Module):
                                      prior_type=prior_type,
                                      prior_params=prior_params)
       self.layers.append(bayesian_layer)
+    self.output_size = self.layers[-1].output_size
     self.task_type = task_type
 
-  def forward(self, input_data):
+  def forward(self, input_data, sample=False):
     current_data = input_data
     for layer in self.layers:
-      current_data = layer.forward(current_data)
+      current_data = layer.forward(current_data, sample)
     return current_data
+
+  # sample a bunch of weights for the network
+  # make predictions using sampled weights
+  # output averaged predictions from different sampled weights
+  def predict_by_sampling(self, input_data, num_samples=1):
+    outputs = torch.empty(num_samples, input_data.size()[0], self.output_size)
+    for i in range(num_samples):
+        outputs[i] = self.forward(input_data, sample=True)
+    outputs = outputs.mean(0)
+    return outputs
 
   def log_prior(self):
     log_prior = 0
