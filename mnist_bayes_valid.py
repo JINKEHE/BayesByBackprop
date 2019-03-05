@@ -62,19 +62,19 @@ if __name__ == '__main__':
 
     # could may have more
     hyper_list = itertools.product(LearningRate_candidates, N_Samples_Testing_candidates, mixture_PI_candidates, mixture_sigma1_candidates, mixture_sigma2_candidates)
-    
+
     for LearningRate, N_Samples_Testing, pi, sigma1, sigma2 in hyper_list:
-      
+
       print("*"*50)
-      
+
       print("Learning rate: {}".format(LearningRate))
       print("N_Samples_Testing: {}".format(N_Samples_Testing))
-      
+
       # Initialize network
       net = BayesianNN(
-        nn_input_size=784, 
-        layer_config=[400, 400, 10], 
-        activation_config=[ActivationType.RELU, ActivationType.RELU, ActivationType.SOFTMAX], 
+        nn_input_size=784,
+        layer_config=[400, 400, 10],
+        activation_config=[ActivationType.RELU, ActivationType.RELU, ActivationType.SOFTMAX],
         prior_type=PriorType.MIXTURE,
         prior_params={'pi' : pi, 'sigma1' : sigma1, 'sigma2' : sigma2},
         task_type=TaskType.CLASSIFICATION
@@ -94,6 +94,8 @@ if __name__ == '__main__':
           # Training
           net.train()
 
+          loss_nan = False
+
           for X, Y in train_loader:
               batch_X = Variable(X.view(X.size()[0], -1))
               batch_Y = Variable(Y.view(X.size()[0]))
@@ -108,6 +110,13 @@ if __name__ == '__main__':
               optim.zero_grad()
               loss.backward()
               optim.step()
+
+              if torch.isnan(loss):
+                  loss_nan = True
+
+          if loss_nan:
+            print("loss nan")
+            break
 
           # Evaluate on training set
           # net.eval()
@@ -141,8 +150,8 @@ if __name__ == '__main__':
           test_accu_lst.append(test_accu)
 
       # to report the final test error, I will use the average of test errors of the last 10 epochs
-      report_test_error_mean = np.average(test_accu_lst[-10:])
-      report_test_error_std = np.std(test_accu_lst[-10:])
+      report_test_error_mean = round(np.average(test_accu_lst[-10:]), 2)
+      report_test_error_std = round(np.std(test_accu_lst[-10:]), 2)
 
       # Plot
 #       import matplotlib.pyplot as plt
@@ -157,7 +166,7 @@ if __name__ == '__main__':
 #       plt.tight_layout()
 #       plt.show()
       print("Final report test error: {} +- {}".format(report_test_error_mean, report_test_error_std))
-      
+
       hyper_val_error_dict[(LearningRate, N_Samples_Testing, pi, sigma1, sigma2)] = (report_test_error_mean, report_test_error_std)
       for key in hyper_val_error_dict.keys():
         print("{}: {}".format(key, hyper_val_error_dict[key]))

@@ -142,13 +142,15 @@ class BayesianLayer(nn.Module):
               self.mu_weights, sigma_weights).log_prob(weights).sum() +
           dist.Normal(self.mu_bias, sigma_bias).log_prob(bias).sum()
       )
+      '''
       if torch.isnan(self.log_posterior):
         print('Weights log prob: ')
         print( dist.Normal(
               self.mu_weights, sigma_weights).log_prob(weights).sum())
         print('Bias log prob: ' )
         print(dist.Normal(self.mu_bias, sigma_bias).log_prob(bias).sum())
-    else:
+      else:
+      '''
       weights = self.mu_weights
       bias = self.mu_bias
 
@@ -157,7 +159,7 @@ class BayesianLayer(nn.Module):
     if self.activation_type == ActivationType.RELU:
       output = torch.relu(linear_output)
     elif self.activation_type == ActivationType.SOFTMAX:
-      output = torch.log_softmax(linear_output, 1)
+      output = torch.log_softmax(linear_output, dim=1)
     elif self.activation_type == ActivationType.SIGMOID:
       output = torch.sigmoid(linear_output)
     elif self.activation_type == ActivationType.TANH:
