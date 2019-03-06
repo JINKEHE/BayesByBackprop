@@ -32,10 +32,10 @@ if use_cuda:
     SIGMA_PRIOR = SIGMA_PRIOR.cuda()
 
 # Initial weight hyperparameters
-MU_WEIGHTS = (-0.5,0.5)
-RHO_WEIGHTS = (-4, -2)
+MU_WEIGHTS = (-1,1.0)
+RHO_WEIGHTS = (-8, -6)
 MU_BIAS = (-0.5, 0.5)
-RHO_BIAS = (-4, -2)
+RHO_BIAS = (-5, -4)
 
 # Loss variance
 SIGMA = torch.tensor([math.exp(-2)])
@@ -72,9 +72,8 @@ class GaussianMixture(object):
         dist.Normal(0.0, self.sigma1).log_prob(weights))
     normal_density2 = torch.exp(
         dist.Normal(0.0, self.sigma2).log_prob(weights))
-    return torch.sum(torch.log(
-        self.pi * normal_density1 +
-        (1 - self.pi) * normal_density2))
+    sum_log_prob = torch.sum(torch.log(self.pi * normal_density1 + (1-self.pi)*normal_density2))
+    return sum_log_prob
 
 class BayesianLayer(nn.Module):
 
@@ -110,7 +109,6 @@ class BayesianLayer(nn.Module):
     self.mu_bias.data.uniform_(*MU_BIAS)
     self.rho_bias.data.uniform_(*RHO_BIAS)
 
-
     if prior_type == PriorType.MIXTURE:
       self.prior_weights = GaussianMixture(
           prior_params['pi'], prior_params['sigma1'], prior_params['sigma2'])
@@ -141,15 +139,14 @@ class BayesianLayer(nn.Module):
               self.mu_weights, sigma_weights).log_prob(weights).sum() +
           dist.Normal(self.mu_bias, sigma_bias).log_prob(bias).sum()
       )
-      '''
+
       if torch.isnan(self.log_posterior):
         print('Weights log prob: ')
         print( dist.Normal(
               self.mu_weights, sigma_weights).log_prob(weights).sum())
         print('Bias log prob: ' )
         print(dist.Normal(self.mu_bias, sigma_bias).log_prob(bias).sum())
-      else:
-      '''
+
       weights = self.mu_weights
       bias = self.mu_bias
 
