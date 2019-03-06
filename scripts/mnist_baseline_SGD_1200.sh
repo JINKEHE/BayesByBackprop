@@ -6,3 +6,4 @@ python mnist_experiment.py \
     --batch_size 128 \
     --network_type standard \
     --optimizer SGD \
+    --preprocess \

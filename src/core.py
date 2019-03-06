@@ -68,7 +68,6 @@ class GaussianMixture(object):
 
   # arguments of dist.Normal() should be tensors rather than scalars
   def log_prob(self, weights):
-    # TODO: need to fix here to use gpu
     normal_density1 = torch.exp(
         dist.Normal(0.0, self.sigma1).log_prob(weights))
     normal_density2 = torch.exp(
@@ -214,10 +213,12 @@ class BayesianNN(nn.Module):
   # make predictions using sampled weights
   # output averaged predictions from different sampled weights
   def predict_by_sampling(self, input_data, num_samples=1):
-    outputs = torch.empty(num_samples, input_data.size()[0], self.output_size)
-    for i in range(num_samples):
-        outputs[i] = self.forward(input_data, sample=True)
-    outputs = outputs.mean(0)
+    # reduce the use of memory
+    with torch.no_grad():
+        outputs = torch.empty(num_samples, input_data.size()[0], self.output_size)
+        for i in range(num_samples):
+            outputs[i] = self.forward(input_data, sample=True)
+        outputs = outputs.mean(0)
     return outputs
 
   def log_prior(self):
