@@ -32,10 +32,10 @@ if use_cuda:
     SIGMA_PRIOR = SIGMA_PRIOR.cuda()
 
 # Initial weight hyperparameters
-MU_WEIGHTS = (-1,1.0)
-RHO_WEIGHTS = (-8, -6)
-MU_BIAS = (-0.5, 0.5)
-RHO_BIAS = (-5, -4)
+MU_WEIGHTS = (-0.1, 0.1)
+RHO_WEIGHTS = (-4, -2)
+MU_BIAS = (-0.1, 0.1)
+RHO_BIAS = (-4, -2)
 
 # Loss variance
 SIGMA = torch.tensor([math.exp(-2)])
