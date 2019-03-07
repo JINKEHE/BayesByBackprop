@@ -1,5 +1,5 @@
 # dataset files
-mnist/
+# mnist/
 src/mnist/mnist_dataset/
 results/
 
