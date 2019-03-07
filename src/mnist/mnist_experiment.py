@@ -202,6 +202,19 @@ if __name__ == '__main__':
     # the main training loop
     train_accu_lst = []
     test_accu_lst = []
+    # Evaluate on test set
+    test_X = Variable(test_set.test_data.view(test_size, -1).type(torch.FloatTensor))
+    test_Y = Variable(test_set.test_labels.view(test_size, -1))
+
+    if use_cuda:
+        test_X, test_Y = test_X.cuda(), test_Y.cuda()
+
+    train_X = Variable(train_set.train_data.view(train_size, -1).type(torch.FloatTensor))
+    train_Y = Variable(train_set.train_labels.view(train_size, -1))
+
+    if use_cuda:
+        train_X, train_Y = train_X.cuda(), train_Y.cuda()
+
 
     for i_ep in range(N_Epochs):
 
@@ -239,12 +252,6 @@ if __name__ == '__main__':
             net.eval()
         # do not use evaluation mode for bayesian networks because we do sampling during testing
 
-        train_X = Variable(train_set.train_data.view(train_size, -1).type(torch.FloatTensor))
-        train_Y = Variable(train_set.train_labels.view(train_size, -1))
-
-        if use_cuda:
-            train_X, train_Y = train_X.cuda(), train_Y.cuda()
-
         # TODO: better to have an unified interface for both networks
         if network_type == 'standard':
             pred_class = net(train_X).cpu().data.numpy().argmax(axis=1)
@@ -260,12 +267,6 @@ if __name__ == '__main__':
 
         train_accu_lst.append(train_accu)
 
-        # Evaluate on test set
-        test_X = Variable(test_set.test_data.view(test_size, -1).type(torch.FloatTensor))
-        test_Y = Variable(test_set.test_labels.view(test_size, -1))
-
-        if use_cuda:
-            test_X, test_Y = test_X.cuda(), test_Y.cuda()
 
         if network_type == 'standard':
             pred_class = net(test_X).cpu().data.numpy().argmax(axis=1)
