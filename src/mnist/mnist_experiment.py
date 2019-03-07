@@ -202,7 +202,7 @@ if __name__ == '__main__':
     # the main training loop
     train_accu_lst = []
     test_accu_lst = []
-    # Evaluate on test set
+
     test_X = Variable(test_set.test_data.view(test_size, -1).type(torch.FloatTensor))
     test_Y = Variable(test_set.test_labels.view(test_size, -1))
 
@@ -252,7 +252,8 @@ if __name__ == '__main__':
             net.eval()
         # do not use evaluation mode for bayesian networks because we do sampling during testing
 
-        # TODO: better to have an unified interface for both networks
+        # test on training set
+
         if network_type == 'standard':
             pred_class = net(train_X).cpu().data.numpy().argmax(axis=1)
         elif network_type == 'bayesian':
@@ -267,6 +268,7 @@ if __name__ == '__main__':
 
         train_accu_lst.append(train_accu)
 
+        # test on testing set
 
         if network_type == 'standard':
             pred_class = net(test_X).cpu().data.numpy().argmax(axis=1)
