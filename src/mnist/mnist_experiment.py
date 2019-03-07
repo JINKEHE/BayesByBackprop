@@ -44,6 +44,8 @@ def get_args(args=None):
     parser.add_argument('--scale_mixture_pi', type=float, default=0.5)
     parser.add_argument('--scale_mixture_log_sigma1', type=float, default=-0.0)
     parser.add_argument('--scale_mixture_log_sigma2', type=float, default=-6.0)
+    # for minibatch training 
+    parser.add_argument('--use_normalized', dest='use_normalized', action='store_true')
     args = parser.parse_args()
     return args
 
@@ -79,6 +81,7 @@ if __name__ == '__main__':
     else:
         N_Samples_Training = args.num_samples_training
         N_Samples_Testing = args.num_samples_testing
+        use_normalized = args.use_normalized
         print("training sample size: {}".format(N_Samples_Training))
         print("testing sample size: {}".format(N_Samples_Testing))
         prior_type = args.prior_type
@@ -215,16 +218,19 @@ if __name__ == '__main__':
     if use_cuda:
         train_X, train_Y = train_X.cuda(), train_Y.cuda()
 
-
+    normalized_factor = N_Train_Batch
     for i_ep in range(N_Epochs):
 
         # Training
         net.train()
-
+        if use_normalized:
+            normalized_factor = 1
         for X, Y in train_loader:
             batch_X = Variable(X.view(X.size()[0], -1))
             batch_Y = Variable(Y.view(X.size()[0]))
 
+            if use_normalized:
+                normalized_factor /= 2
             if use_cuda:
                 batch_X, batch_Y = batch_X.cuda(), batch_Y.cuda()
 
@@ -233,7 +239,7 @@ if __name__ == '__main__':
                 y_pred = net(batch_X)
                 loss = loss_fn(y_pred, batch_Y)
             elif network_type == 'bayesian':
-                loss, _ , _ = net.cost_function(batch_X, batch_Y, num_samples=N_Samples_Training, num_batches = N_Train_Batch)
+                loss, _ , _ = net.cost_function(batch_X, batch_Y, num_samples=N_Samples_Training, num_batches = normalized_factor)
             else:
                 raise ValueError
 
