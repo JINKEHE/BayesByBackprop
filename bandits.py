@@ -148,8 +148,7 @@ class EGreedyNNAgent(Agent):
       self.optimizer.zero_grad()
 
       # forward + backward + optimize
-      
-      loss = self.loss_fn(self.value_estimates(inputs), labels)
+      loss = self.loss_fn(self.value_estimates(inputs).squeeze(), labels)
 
       loss.backward()
       self.optimizer.step()
