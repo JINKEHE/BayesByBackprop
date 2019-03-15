@@ -32,9 +32,9 @@ if use_cuda:
     SIGMA_PRIOR = SIGMA_PRIOR.cuda()
 
 # Initial weight hyperparameters
-MU_WEIGHTS = (-0.1, 0.1)
+MU_WEIGHTS = (-0.01, 0.01)
 RHO_WEIGHTS = (-4, -2)
-MU_BIAS = (-0.1, 0.1)
+MU_BIAS = (-0.01, 0.01)
 RHO_BIAS = (-4, -2)
 
 # Loss variance
