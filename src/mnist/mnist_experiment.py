@@ -218,7 +218,7 @@ if __name__ == '__main__':
     if use_cuda:
         train_X, train_Y = train_X.cuda(), train_Y.cuda()
 
-    normalized_factor = N_Train_Batch
+    normalized_factor = 1/N_Train_Batch
     for i_ep in range(N_Epochs):
 
         # Training
@@ -230,7 +230,7 @@ if __name__ == '__main__':
             batch_Y = Variable(Y.view(X.size()[0]))
 
             if use_normalized:
-                normalized_factor /= 2
+                normalized_factor *= 2
             if use_cuda:
                 batch_X, batch_Y = batch_X.cuda(), batch_Y.cuda()
 
@@ -239,7 +239,7 @@ if __name__ == '__main__':
                 y_pred = net(batch_X)
                 loss = loss_fn(y_pred, batch_Y)
             elif network_type == 'bayesian':
-                loss, _ , _ = net.cost_function(batch_X, batch_Y, num_samples=N_Samples_Training, num_batches = normalized_factor)
+                loss, _ , _ = net.cost_function(batch_X, batch_Y, num_samples=N_Samples_Training, num_batches = 1/normalized_factor)
             else:
                 raise ValueError
 
