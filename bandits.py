@@ -46,7 +46,7 @@ If the agent picks eat:
 
 3. The environment computes the reward for the selected action and sends it back to the agent, which updates its predictions.'''
 
-class Agent(object):
+class Agent(object):  
   def __init__(self):
     # Previous 4096 interactions with the environment
     self.past_plays_context = []
@@ -163,19 +163,31 @@ class EGreedyNNAgent(Agent):
   
 class BNNAgent(Agent):
   
-  def __init__(self, optimizer_constructor=torch.optim.Adam, optim_params={'lr':1e-3, 'eps':0.01}):
+  def __init__(self, optimizer_constructor=torch.optim.Adam, 
+               optim_params={'lr':1e-3, 'eps':0.01},
+               prior_params=None):
+        
     super().__init__()
+    
     # Neural net for estimating E[reward | context, action]
-    self.value_estimates = BayesianNN(
-        CONTEXT_SIZE, [100, 100, 1],
-        [ActivationType.RELU, ActivationType.RELU, ActivationType.NONE])
+    
+    bnn_params = {'nn_input_size': CONTEXT_SIZE,
+                  'layer_config': [100, 100, 1],
+                  'activation_config': [ActivationType.RELU, 
+                                        ActivationType.RELU, ActivationType.NONE],
+                 }
+    
+    if prior_params is not None:
+        bnn_params['prior_params'] = prior_params
+    
+    self.value_estimates = BayesianNN(**bnn_params)
+        
     if use_cuda:
       self.value_estimates = self.value_estimates.cuda()
     
     self.optimizer = optimizer_constructor(self.value_estimates.parameters(), **optim_params)
   
 
-  
   def select_action(self, context, logs=False):
     self.value_estimates.train()
     max_reward = POISONOUS_REWARD - 1
