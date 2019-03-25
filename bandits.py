@@ -186,6 +186,7 @@ class BNNAgent(Agent):
       self.value_estimates = self.value_estimates.cuda()
     
     self.optimizer = optimizer_constructor(self.value_estimates.parameters(), **optim_params)
+    self.scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size=32)
   
 
   def select_action(self, context, logs=False):
@@ -251,6 +252,7 @@ class BNNAgent(Agent):
       avg_loss += loss
       
     avg_loss /= len(past_plays_loader.dataset)
+#     self.scheduler.step()
     
     if logs:
       print('{}. Loss: {}'.format(i, avg_loss))
