@@ -161,11 +161,13 @@ class EGreedyNNAgent(Agent):
       print('{}. Loss: {}'.format(i, avg_loss))
     return avg_loss    
   
+
 class BNNAgent(Agent):
   
   def __init__(self, optimizer_constructor=torch.optim.Adam, 
                optim_params={'lr':1e-3, 'eps':0.01},
-               prior_params=None):
+               prior_params=None,
+               lr_scheduler_step_size=32):
         
     super().__init__()
     
@@ -312,7 +314,3 @@ class Environment(object):
     loss = self.agent.update_variational_posterior(logs)
     
     return loss
-
-
-
-
