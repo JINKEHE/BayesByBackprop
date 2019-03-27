@@ -68,21 +68,17 @@ class GaussianMixture(object):
 
   # arguments of dist.Normal() should be tensors rather than scalars
   def log_prob(self, weights):
-    # TODO: need to fix here to use gpu
-    
-    log_prob1 = dist.Normal(0.0, self.sigma1).log_prob(weights)
-    log_prob2 = dist.Normal(0.0, self.sigma2).log_prob(weights)
-    normal_density2 = torch.exp(log_prob2)
-    
-    # don't take exp of log_prob1 if the densities are very small
-    # to avoid numerical instability
-    if normal_density2.max().item() < 1e-8:
-        return log_prob1 + math.log(self.pi)
-    
-    normal_density1 = torch.exp(log_prob1)
-    return torch.sum(torch.log(
-        self.pi * normal_density1 +
-        (1 - self.pi) * normal_density2))
+    new_weights = weights.view(-1)
+    normal_density1 = dist.Normal(0,self.sigma1).log_prob(new_weights)
+    exp_normal_density1 = torch.exp(normal_density1)
+    exp_normal_density2 = torch.exp(
+        dist.Normal(0.0, self.sigma2).log_prob(new_weights))
+    nonzero = exp_normal_density2.nonzero()
+    zero = (exp_normal_density2==0).nonzero()
+    sum_log_prob = torch.sum(torch.log(self.pi * torch.take(exp_normal_density1,nonzero) \
+                  + (1-self.pi)*torch.take(exp_normal_density2,nonzero))) \
+                  + torch.sum(torch.take(normal_density1, zero)+np.log(self.pi))
+    return sum_log_prob
 
 class BayesianLayer(nn.Module):
 
