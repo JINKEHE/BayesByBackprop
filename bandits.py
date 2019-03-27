@@ -313,4 +313,4 @@ class Environment(object):
     self.agent.update_memory(context, selected_action, reward)
     loss = self.agent.update_variational_posterior(logs)
     
-    return loss
+    return loss.item()
