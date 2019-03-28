@@ -286,6 +286,9 @@ class Environment(object):
     self.agent = agent
     self.dataloader = dataloader
     self.cumulative_regret = 0
+    self.mushrooms_eaten = 0
+    self.regret_from_passing = 0
+    self.regret_from_eating = 0
   
   def play_round(self, logs=False):
     
@@ -321,7 +324,13 @@ class Environment(object):
     else: #eat
       action_string = 'eat'
       reward = eat_reward
+      self.mushrooms_eaten += 1
     self.cumulative_regret += max(optimal_reward - reward, 0) 
+
+    if selected_action == 0 and reward < optimal_reward:
+      self.regret_from_passing += optimal_reward - reward
+    if selected_action == 1 and reward < optimal_reward:
+      self.regret_from_eating += optimal_reward - reward
     
     if logs:
       print('The mushroom was {}. The agent chose {} and got a reward of {}.'.format(mushroom_string, action_string, reward))

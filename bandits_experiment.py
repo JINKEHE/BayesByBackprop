@@ -147,11 +147,27 @@ if __name__ == '__main__':
 	                    optim_params=eg_optimizer_params)
   eg0_env = Environment(eg0_agent, copy.deepcopy(trainloader))
 
+  bnn_loss = []
+
   eg5_regret = []
   eg1_regret = []
   eg0_regret = []
-  bnn_loss = []
   bnn_regret = []
+
+  eg5_mushrooms_eaten = []
+  eg1_mushrooms_eaten = []
+  eg0_mushrooms_eaten = []
+  bnn_mushrooms_eaten = []
+
+  eg5_regret_from_passing = []
+  eg1_regret_from_passing = []
+  eg0_regret_from_passing = []
+  bnn_regret_from_passing = []
+
+  eg5_regret_from_eating = []
+  eg1_regret_from_eating = []
+  eg0_regret_from_eating = []
+  bnn_regret_from_eating = []
 
   # If necessary, create directory for graph outputs
   if not os.path.isdir('results'):
@@ -177,11 +193,27 @@ if __name__ == '__main__':
 
     if (i+1) % 50 == 0:
       bnn_loss.append(current_bnn_loss)
+
     eg5_regret.append(eg5_env.cumulative_regret)
     eg1_regret.append(eg1_env.cumulative_regret)
     eg0_regret.append(eg0_env.cumulative_regret)
     bnn_regret.append(bnn_env.cumulative_regret)
 
+    eg5_mushrooms_eaten.append(eg5_env.mushrooms_eaten)
+    eg1_mushrooms_eaten.append(eg1_env.mushrooms_eaten)
+    eg0_mushrooms_eaten.append(eg0_env.mushrooms_eaten)
+    bnn_mushrooms_eaten.append(bnn_env.mushrooms_eaten)
+
+    eg5_regret_from_passing.append(eg5_env.regret_from_passing)
+    eg1_regret_from_passing.append(eg1_env.regret_from_passing)
+    eg0_regret_from_passing.append(eg0_env.regret_from_passing)
+    bnn_regret_from_passing.append(bnn_env.regret_from_passing)
+
+    eg5_regret_from_eating.append(eg5_env.regret_from_eating)
+    eg1_regret_from_eating.append(eg1_env.regret_from_eating)
+    eg0_regret_from_eating.append(eg0_env.regret_from_eating)
+    bnn_regret_from_eating.append(bnn_env.regret_from_eating)
+    
     if (i+1) % 500 == 0:
       plt.plot(np.array(bnn_loss), label='BNN loss')
       plt.legend()
@@ -197,5 +229,32 @@ if __name__ == '__main__':
       plt.ylabel('Cumulative Regret')
       plt.savefig('results/{}/graphs/regret_{}'.format(args.experiment_name, i+1))
       plt.clf()
+      
+      plt.plot(np.array(eg5_mushrooms_eaten), label='Epsilon-Greedy 5%')
+      plt.plot(np.array(eg1_mushrooms_eaten), label='Epsilon-Greedy 1%')
+      plt.plot(np.array(eg0_mushrooms_eaten), label='Greedy')
+      plt.plot(np.array(bnn_mushrooms_eaten), label='BNN')
+      plt.legend()
+      plt.ylabel('Mushrooms Eaten')
+      plt.savefig('results/{}/graphs/mushrooms_eaten_{}'.format(args.experiment_name, i+1))
+      plt.clf()
+
+      plt.plot(np.array(eg5_regret_from_eating), label='Epsilon-Greedy 5%')
+      plt.plot(np.array(eg1_regret_from_eating), label='Epsilon-Greedy 1%')
+      plt.plot(np.array(eg0_regret_from_eating), label='Greedy')
+      plt.plot(np.array(bnn_regret_from_eating), label='BNN')
+      plt.legend()
+      plt.ylabel('Cumulative Regret from Eating')
+      plt.savefig('results/{}/graphs/regret_eating_{}'.format(args.experiment_name, i+1))
+      plt.clf()
+
+      plt.plot(np.array(eg5_regret_from_passing), label='Epsilon-Greedy 5%')
+      plt.plot(np.array(eg1_regret_from_passing), label='Epsilon-Greedy 1%')
+      plt.plot(np.array(eg0_regret_from_passing), label='Greedy')
+      plt.plot(np.array(bnn_regret_from_passing), label='BNN')
+      plt.legend()
+      plt.ylabel('Cumulative Regret from Passing')
+      plt.savefig('results/{}/graphs/regret_passing_{}'.format(args.experiment_name, i+1))
+      plt.clf()
+
       bnn_loss = []
-      eg_loss = []
