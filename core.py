@@ -88,6 +88,10 @@ class BayesianLayer(nn.Module):
                prior_type=PriorType.MIXTURE,
                prior_params={'pi' : PI, 'sigma1' : SIGMA_1, 'sigma2' : SIGMA_2},
                activation_type=ActivationType.NONE,
+               initial_mu_weights=MU_WEIGHTS,
+               initial_mu_bias=MU_BIAS,
+               initial_rho_weights=RHO_WEIGHTS,
+               initial_rho_bias=RHO_BIAS
               ):
     super().__init__()
     self.input_size = input_size
@@ -109,10 +113,10 @@ class BayesianLayer(nn.Module):
         self.normal_dist = dist.Normal(torch.Tensor([0]).cuda(), torch.Tensor([1]).cuda())
 
     # initialize variables
-    self.mu_weights.data.uniform_(*MU_WEIGHTS)
-    self.rho_weights.data.uniform_(*RHO_WEIGHTS)
-    self.mu_bias.data.uniform_(*MU_BIAS)
-    self.rho_bias.data.uniform_(*RHO_BIAS)
+    self.mu_weights.data.uniform_(*initial_mu_weights)
+    self.rho_weights.data.uniform_(*initial_rho_weights)
+    self.mu_bias.data.uniform_(*initial_mu_bias)
+    self.rho_bias.data.uniform_(*initial_rho_bias)
 
 
     if prior_type == PriorType.MIXTURE:
@@ -205,6 +209,10 @@ class BayesianNN(nn.Module):
       prior_type=PriorType.MIXTURE,
       prior_params={'pi' : PI, 'sigma1' : SIGMA_1, 'sigma2' : SIGMA_2},
       task_type=TaskType.REGRESSION,         # determines the likelihood form
+      initial_mu_weights=MU_WEIGHTS,
+      initial_mu_bias=MU_BIAS,
+      initial_rho_weights=RHO_WEIGHTS,
+      initial_rho_bias=RHO_BIAS
   ):
     super().__init__()
 
@@ -219,7 +227,11 @@ class BayesianNN(nn.Module):
       bayesian_layer = BayesianLayer(input_size, output_size,
                                      activation_type = activation_config[i],
                                      prior_type=prior_type,
-                                     prior_params=prior_params)
+                                     prior_params=prior_params,
+                                     initial_mu_weights=initial_mu_weights,
+                                     initial_mu_bias=initial_mu_bias,
+                                     initial_rho_weights=initial_rho_weights,
+                                     initial_rho_bias=initial_rho_bias)
       self.layers.append(bayesian_layer)
     self.output_size = self.layers[-1].output_size
     self.task_type = task_type

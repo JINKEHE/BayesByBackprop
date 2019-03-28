@@ -76,6 +76,10 @@ def read_args(args=None):
   parser.add_argument('--bnn_log_sigma2', type=float, default=math.exp(-7))
   parser.add_argument('--averaged_weights', dest='averaged_weights', action='store_true')
   parser.add_argument('--avg_weights_count', type=int, default=2)
+  parser.add_argument('--initial_mu_weights_range', type=float, nargs=2, default=[-0.5, 0.5])
+  parser.add_argument('--initial_mu_bias_range', type=float, nargs=2, default=[-0.5, 0.5])
+  parser.add_argument('--initial_rho_weights_range', type=float, nargs=2, default=[-4, -2])
+  parser.add_argument('--initial_rho_bias_range', type=float, nargs=2, default=[-4, -2])
   args = parser.parse_args()
   return args
   
@@ -121,7 +125,11 @@ if __name__ == '__main__':
 	               prior_params=prior_params,
 	               lr_scheduler_step_size=args.bnn_lr_scheduler_step_size,
                  averaged_weights=args.averaged_weights,
-                 avg_weights_count=args.avg_weights_count)
+                 avg_weights_count=args.avg_weights_count,
+                 initial_mu_weights=args.initial_mu_weights_range,
+                 initial_mu_bias=args.initial_mu_bias_range,
+                 initial_rho_weights=args.initial_rho_weights_range,
+                 initial_rho_bias=args.initial_rho_bias_range)
   bnn_env = Environment(bnn_agent, trainloader)
 
   eg5_agent = EGreedyNNAgent(epsilon=.05, 

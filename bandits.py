@@ -168,7 +168,11 @@ class BNNAgent(Agent):
                prior_params=None,
                lr_scheduler_step_size=32,
                averaged_weights=False,
-               avg_weights_count=2):
+               avg_weights_count=2,
+               initial_mu_weights=[-0.5, 0.5],
+               initial_mu_bias=[-0.5, 0.5],
+               initial_rho_weights=[-4, -2],
+               initial_rho_bias=[-4, -2]):
         
     super().__init__()
     
@@ -178,6 +182,10 @@ class BNNAgent(Agent):
                   'layer_config': [100, 100, 1],
                   'activation_config': [ActivationType.RELU, 
                                         ActivationType.RELU, ActivationType.NONE],
+                  'initial_mu_weights': initial_mu_weights,
+                  'initial_mu_bias': initial_mu_bias,
+                  'initial_rho_weights': initial_rho_weights,
+                  'initial_rho_bias': initial_rho_bias
                  }
     
     if prior_params is not None:
