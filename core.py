@@ -132,10 +132,29 @@ class BayesianLayer(nn.Module):
     epsilon = self.normal_dist.sample(rho.size()).squeeze(-1)
     return mu + torch.log2(1 + torch.exp(rho)) * epsilon
 
-  def forward(self, input_data, sample=False):
+  def forward(self, input_data, sample=False, 
+              averaged_weights=False, avg_weight_count=2):
+
     if self.training or sample:
-      weights = self._compute_gaussian_sample(self.mu_weights, self.rho_weights)
-      bias = self._compute_gaussian_sample(self.mu_bias, self.rho_bias)
+      
+      # for the bandits experiment, implement sampling and 
+      # averaging over individual weights
+      if averaged_weights:
+        sum_weights = torch.zeros_like(self.mu_weights)
+        sum_bias = torch.zeros_like(self.mu_bias)
+        for i in range(avg_weight_count):
+           sum_weights += self._compute_gaussian_sample(
+             self.mu_weights, self.rho_weights)
+           sum_bias += self._compute_gaussian_sample(
+             self.mu_bias, self.rho_bias)
+        weights = sum_weights / avg_weight_count
+        bias = sum_bias / avg_weight_count
+      else:     
+        weights = self._compute_gaussian_sample(
+          self.mu_weights, self.rho_weights)
+        bias = self._compute_gaussian_sample(
+          self.mu_bias, self.rho_bias)
+
       self.log_prior = (self.prior_weights.log_prob(weights).sum() +
                         self.prior_bias.log_prob(bias).sum() )
       sigma_weights = torch.log(1 + torch.exp(self.rho_weights))
@@ -205,10 +224,12 @@ class BayesianNN(nn.Module):
     self.output_size = self.layers[-1].output_size
     self.task_type = task_type
 
-  def forward(self, input_data, sample=False):
+  def forward(self, input_data, sample=False,
+              averaged_weights=False, avg_weight_count=2):
     current_data = input_data
     for layer in self.layers:
-      current_data = layer.forward(current_data, sample)
+      current_data = layer.forward(current_data, sample,
+                                   averaged_weights, avg_weight_count)
     return current_data
 
   # sample a bunch of weights for the network

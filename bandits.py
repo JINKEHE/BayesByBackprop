@@ -1,4 +1,3 @@
-import queue
 import random
 import torch
 import copy
@@ -167,7 +166,9 @@ class BNNAgent(Agent):
   def __init__(self, optimizer_constructor=torch.optim.Adam, 
                optim_params={'lr':1e-3, 'eps':0.01},
                prior_params=None,
-               lr_scheduler_step_size=32):
+               lr_scheduler_step_size=32,
+               averaged_weights=False,
+               avg_weights_count=2):
         
     super().__init__()
     
@@ -189,6 +190,9 @@ class BNNAgent(Agent):
     
     self.optimizer = optimizer_constructor(self.value_estimates.parameters(), **optim_params)
     self.scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size=32)
+
+    self.averaged_weights = averaged_weights
+    self.avg_weights_count = avg_weights_count
   
 
   def select_action(self, context, logs=False):
@@ -197,6 +201,10 @@ class BNNAgent(Agent):
     argmax_action = -1
     for action in range(NUM_ACTIONS):
       expected_reward = 0
+      if self.averaged_weights:
+        sample_count = 1
+      else:
+        sample_count = SAMPLE_COUNT
       for i in range(SAMPLE_COUNT):
         
         action_tensor = torch.tensor([[action]], dtype=torch.float)
@@ -207,7 +215,9 @@ class BNNAgent(Agent):
         if use_cuda:
           context_and_action = context_and_action.cuda()
         
-        expected_reward += self.value_estimates(context_and_action)
+        expected_reward += self.value_estimates(
+          context_and_action, averaged_weights=self.averaged_weights,
+          avg_weight_count=self.avg_weights_count)
       expected_reward /= SAMPLE_COUNT
       if logs:
         print('Action {} - predicted reward: {}'.format(

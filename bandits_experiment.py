@@ -74,6 +74,8 @@ def read_args(args=None):
   parser.add_argument('--bnn_pi', type=float, default=0.75)
   parser.add_argument('--bnn_log_sigma1', type=float, default=math.exp(-2))
   parser.add_argument('--bnn_log_sigma2', type=float, default=math.exp(-7))
+  parser.add_argument('--averaged_weights', dest='averaged_weights', action='store_true')
+  parser.add_argument('--avg_weights_count', type=int, default=2)
   args = parser.parse_args()
   return args
   
@@ -117,7 +119,9 @@ if __name__ == '__main__':
   bnn_agent = BNNAgent(optimizer_constructor=optimizer_constructor,
 	               optim_params=bnn_optimizer_params,
 	               prior_params=prior_params,
-	               lr_scheduler_step_size=args.bnn_lr_scheduler_step_size)
+	               lr_scheduler_step_size=args.bnn_lr_scheduler_step_size,
+                 averaged_weights=args.averaged_weights,
+                 avg_weights_count=args.avg_weights_count)
   bnn_env = Environment(bnn_agent, trainloader)
 
   eg5_agent = EGreedyNNAgent(epsilon=.05, 
