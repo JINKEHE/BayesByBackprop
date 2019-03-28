@@ -189,7 +189,8 @@ class BNNAgent(Agent):
       self.value_estimates = self.value_estimates.cuda()
     
     self.optimizer = optimizer_constructor(self.value_estimates.parameters(), **optim_params)
-    self.scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size=32)
+    self.scheduler = torch.optim.lr_scheduler.StepLR(
+      self.optimizer, step_size=lr_scheduler_step_size)
 
     self.averaged_weights = averaged_weights
     self.avg_weights_count = avg_weights_count
