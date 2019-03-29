@@ -113,6 +113,10 @@ if __name__ == '__main__':
                            'eps': args.eg_epsilon}
     bnn_optimizer_params = {'lr': args.bnn_learning_rate,
                             'eps': args.bnn_epsilon}
+  elif args.optimizer_type == 'SGD':
+    optimizer_constructor = torch.optim.SGD
+    eg_optimizer_params = {'lr': args.eg_learning_rate}
+    bnn_optimizer_params = {'lr': args.bnn_learning_rate}
   
   sigma1 = math.exp(args.bnn_log_sigma1)
   sigma2 = math.exp(args.bnn_log_sigma2)
@@ -179,7 +183,7 @@ if __name__ == '__main__':
   if not os.path.isdir('results/{}/graphs'.format(args.experiment_name)):
     os.makedirs('results/{}/graphs'.format(args.experiment_name))
 
-  for i in range(4000):
+  for i in range(50000):
 
     logs = False
     if (i+1) % 100 == 0:
