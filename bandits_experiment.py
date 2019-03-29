@@ -68,9 +68,12 @@ def read_args(args=None):
   parser.add_argument('--optimizer_type', type=str, default='Adam')
   parser.add_argument('--eg_learning_rate', type=float, default=1e-3)
   parser.add_argument('--eg_epsilon', type=float, default=1e-3)
+  parser.add_argument('--eg_momentum', type=float, default=0)
   parser.add_argument('--bnn_learning_rate', type=float, default=1e-3)
   parser.add_argument('--bnn_epsilon', type=float, default=1e-3)
+  parser.add_argument('--bnn_momentum', type=float, default=0)
   parser.add_argument('--bnn_lr_scheduler_step_size', type=int, default=32)
+  parser.add_argument('--bnn_lr_scheduler_gamma', type=float, default=0.1)
   parser.add_argument('--bnn_pi', type=float, default=0.75)
   parser.add_argument('--bnn_log_sigma1', type=float, default=math.exp(-2))
   parser.add_argument('--bnn_log_sigma2', type=float, default=math.exp(-7))
@@ -115,8 +118,10 @@ if __name__ == '__main__':
                             'eps': args.bnn_epsilon}
   elif args.optimizer_type == 'SGD':
     optimizer_constructor = torch.optim.SGD
-    eg_optimizer_params = {'lr': args.eg_learning_rate}
-    bnn_optimizer_params = {'lr': args.bnn_learning_rate}
+    eg_optimizer_params = {'lr': args.eg_learning_rate,
+                           'momentum': args.eg_momentum}
+    bnn_optimizer_params = {'lr': args.bnn_learning_rate, 
+                            'momentum': args.bnn_momentum}
   
   sigma1 = math.exp(args.bnn_log_sigma1)
   sigma2 = math.exp(args.bnn_log_sigma2)
@@ -128,6 +133,7 @@ if __name__ == '__main__':
 	               optim_params=bnn_optimizer_params,
 	               prior_params=prior_params,
 	               lr_scheduler_step_size=args.bnn_lr_scheduler_step_size,
+                 lr_scheduler_gamma=args.bnn_lr_scheduler_gamma,
                  averaged_weights=args.averaged_weights,
                  avg_weights_count=args.avg_weights_count,
                  initial_mu_weights=args.initial_mu_weights_range,

@@ -167,6 +167,7 @@ class BNNAgent(Agent):
                optim_params={'lr':1e-3, 'eps':0.01},
                prior_params=None,
                lr_scheduler_step_size=32,
+               lr_scheduler_gamma=0.1,
                averaged_weights=False,
                avg_weights_count=2,
                initial_mu_weights=[-0.5, 0.5],
@@ -196,9 +197,11 @@ class BNNAgent(Agent):
     if use_cuda:
       self.value_estimates = self.value_estimates.cuda()
     
-    self.optimizer = optimizer_constructor(self.value_estimates.parameters(), **optim_params)
+    self.optimizer = optimizer_constructor(
+      self.value_estimates.parameters(), **optim_params)
     self.scheduler = torch.optim.lr_scheduler.StepLR(
-      self.optimizer, step_size=lr_scheduler_step_size)
+      self.optimizer, step_size=lr_scheduler_step_size, 
+      gamma=lr_scheduler_gamma)
 
     self.averaged_weights = averaged_weights
     self.avg_weights_count = avg_weights_count
@@ -214,7 +217,7 @@ class BNNAgent(Agent):
         sample_count = 1
       else:
         sample_count = SAMPLE_COUNT
-      for i in range(SAMPLE_COUNT):
+      for i in range(sample_count):
         
         action_tensor = torch.tensor([[action]], dtype=torch.float)
         
@@ -227,7 +230,7 @@ class BNNAgent(Agent):
         expected_reward += self.value_estimates(
           context_and_action, averaged_weights=self.averaged_weights,
           avg_weight_count=self.avg_weights_count)
-      expected_reward /= SAMPLE_COUNT
+      expected_reward /= sample_count
       if logs:
         print('Action {} - predicted reward: {}'.format(
             action, expected_reward))
@@ -273,7 +276,7 @@ class BNNAgent(Agent):
       avg_loss += loss
       
     avg_loss /= len(past_plays_loader.dataset)
-#     self.scheduler.step()
+    self.scheduler.step()
     
     if logs:
       print('{}. Loss: {}'.format(i, avg_loss))
