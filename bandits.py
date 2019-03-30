@@ -285,9 +285,10 @@ class BNNAgent(Agent):
 
 class Environment(object):
   
-  def __init__(self, agent, dataloader):
+  def __init__(self, agent, dataloader, name):
     self.agent = agent
     self.dataloader = dataloader
+    self.name = name
     self.cumulative_regret = 0
     self.mushrooms_eaten = 0
     self.regret_from_passing = 0

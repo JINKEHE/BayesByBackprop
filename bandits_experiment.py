@@ -83,6 +83,7 @@ def read_args(args=None):
   parser.add_argument('--initial_mu_bias_range', type=float, nargs=2, default=[-0.5, 0.5])
   parser.add_argument('--initial_rho_weights_range', type=float, nargs=2, default=[-4, -2])
   parser.add_argument('--initial_rho_bias_range', type=float, nargs=2, default=[-4, -2])
+  parser.add_argument('--number_of_runs', type=int, default=1)
   args = parser.parse_args()
   return args
   
@@ -128,34 +129,51 @@ if __name__ == '__main__':
   prior_params = {'pi': args.bnn_pi, 
                   'sigma1': sigma1,
                   'sigma2': sigma2}
-	      
-  bnn_agent = BNNAgent(optimizer_constructor=optimizer_constructor,
-	               optim_params=bnn_optimizer_params,
-	               prior_params=prior_params,
-	               lr_scheduler_step_size=args.bnn_lr_scheduler_step_size,
-                 lr_scheduler_gamma=args.bnn_lr_scheduler_gamma,
-                 averaged_weights=args.averaged_weights,
-                 avg_weights_count=args.avg_weights_count,
-                 initial_mu_weights=args.initial_mu_weights_range,
-                 initial_mu_bias=args.initial_mu_bias_range,
-                 initial_rho_weights=args.initial_rho_weights_range,
-                 initial_rho_bias=args.initial_rho_bias_range)
-  bnn_env = Environment(bnn_agent, trainloader)
 
-  eg5_agent = EGreedyNNAgent(epsilon=.05, 
-	                    optimizer_constructor=optimizer_constructor,
-	                    optim_params=eg_optimizer_params)
-  eg5_env = Environment(eg5_agent, copy.deepcopy(trainloader))
+  bnn_envs = []
+  eg5_envs = []
+  eg1_envs = []
+  eg0_envs = []
+  envs = []
 
-  eg1_agent = EGreedyNNAgent(epsilon=.01, 
-	                    optimizer_constructor=optimizer_constructor,
-	                    optim_params=eg_optimizer_params)
-  eg1_env = Environment(eg1_agent, copy.deepcopy(trainloader))
+  for j in range(args.number_of_runs):
 
-  eg0_agent = EGreedyNNAgent(epsilon=.00, 
-	                    optimizer_constructor=optimizer_constructor,
-	                    optim_params=eg_optimizer_params)
-  eg0_env = Environment(eg0_agent, copy.deepcopy(trainloader))
+    bnn_agent = BNNAgent(optimizer_constructor=optimizer_constructor,
+                  optim_params=bnn_optimizer_params,
+                  prior_params=prior_params,
+                  lr_scheduler_step_size=args.bnn_lr_scheduler_step_size,
+                  lr_scheduler_gamma=args.bnn_lr_scheduler_gamma,
+                  averaged_weights=args.averaged_weights,
+                  avg_weights_count=args.avg_weights_count,
+                  initial_mu_weights=args.initial_mu_weights_range,
+                  initial_mu_bias=args.initial_mu_bias_range,
+                  initial_rho_weights=args.initial_rho_weights_range,
+                  initial_rho_bias=args.initial_rho_bias_range)
+    bnn_env = Environment(bnn_agent, trainloader,
+                          'Bayes by Backprop')
+
+    eg5_agent = EGreedyNNAgent(epsilon=.05, 
+                        optimizer_constructor=optimizer_constructor,
+                        optim_params=eg_optimizer_params)
+    eg5_env = Environment(eg5_agent, copy.deepcopy(trainloader),
+                          'Epsilon Greedy 5%')
+
+    eg1_agent = EGreedyNNAgent(epsilon=.01, 
+                        optimizer_constructor=optimizer_constructor,
+                        optim_params=eg_optimizer_params)
+    eg1_env = Environment(eg1_agent, copy.deepcopy(trainloader),
+                          'Epsilon Greedy 1%')
+
+    eg0_agent = EGreedyNNAgent(epsilon=.00, 
+                        optimizer_constructor=optimizer_constructor,
+                        optim_params=eg_optimizer_params)
+    eg0_env = Environment(eg0_agent, copy.deepcopy(trainloader),
+                          'Greedy')
+
+    bnn_envs.append(bnn_env)
+    eg5_envs.append(eg5_env)
+    eg1_envs.append(eg1_env)
+    eg0_envs.append(eg0_env)
 
   bnn_loss = []
 
@@ -179,6 +197,15 @@ if __name__ == '__main__':
   eg0_regret_from_eating = []
   bnn_regret_from_eating = []
 
+  envs = [(eg5_envs, eg5_regret, eg5_regret_from_eating, 
+           eg5_regret_from_passing, eg5_mushrooms_eaten),
+          (eg1_envs, eg1_regret, eg1_regret_from_eating, 
+           eg1_regret_from_passing, eg1_mushrooms_eaten),
+          (eg0_envs, eg0_regret, eg0_regret_from_eating, 
+           eg0_regret_from_passing, eg0_mushrooms_eaten),
+          (bnn_envs, bnn_regret, bnn_regret_from_eating, 
+           bnn_regret_from_passing, bnn_mushrooms_eaten)]
+
   # If necessary, create directory for graph outputs
   if not os.path.isdir('results'):
     os.makedirs('results')  
@@ -196,33 +223,35 @@ if __name__ == '__main__':
       logs = True
       print('{}.'.format(i))
 
-    eg5_env.play_round(logs=logs)
-    eg1_env.play_round(logs=logs)
-    eg0_env.play_round(logs=logs)
-    current_bnn_loss = bnn_env.play_round(logs=logs)
-
-    if (i+1) % 50 == 0:
-      bnn_loss.append(current_bnn_loss)
-
-    eg5_regret.append(eg5_env.cumulative_regret)
-    eg1_regret.append(eg1_env.cumulative_regret)
-    eg0_regret.append(eg0_env.cumulative_regret)
-    bnn_regret.append(bnn_env.cumulative_regret)
-
-    eg5_mushrooms_eaten.append(eg5_env.mushrooms_eaten)
-    eg1_mushrooms_eaten.append(eg1_env.mushrooms_eaten)
-    eg0_mushrooms_eaten.append(eg0_env.mushrooms_eaten)
-    bnn_mushrooms_eaten.append(bnn_env.mushrooms_eaten)
-
-    eg5_regret_from_passing.append(eg5_env.regret_from_passing)
-    eg1_regret_from_passing.append(eg1_env.regret_from_passing)
-    eg0_regret_from_passing.append(eg0_env.regret_from_passing)
-    bnn_regret_from_passing.append(bnn_env.regret_from_passing)
-
-    eg5_regret_from_eating.append(eg5_env.regret_from_eating)
-    eg1_regret_from_eating.append(eg1_env.regret_from_eating)
-    eg0_regret_from_eating.append(eg0_env.regret_from_eating)
-    bnn_regret_from_eating.append(bnn_env.regret_from_eating)
+    for env_set, regret, regret_eat, regret_pass, mushrooms_eaten in envs:
+      if logs:
+        print(env_set[0].name)
+      is_bnn = env_set[0].name == 'Bayes by Backprop'
+      avg_regret = 0
+      avg_regret_from_eating = 0
+      avg_regret_from_passing = 0
+      avg_mushrooms_eaten = 0
+      if is_bnn:
+        avg_loss = 0
+      for env in env_set:
+        loss = env.play_round(logs=logs)
+        avg_regret += env.cumulative_regret
+        avg_mushrooms_eaten += env.mushrooms_eaten
+        avg_regret_from_eating += env.regret_from_eating
+        avg_regret_from_passing += env.regret_from_passing
+        if is_bnn:
+          avg_loss += loss
+      avg_regret /= args.number_of_runs
+      avg_regret_from_eating /= args.number_of_runs
+      avg_regret_from_passing /= args.number_of_runs
+      avg_mushrooms_eaten /= args.number_of_runs
+      if is_bnn:
+        avg_loss /= args.number_of_runs
+        bnn_loss.append(avg_loss)
+      regret.append(avg_regret)
+      regret_eat.append(avg_regret_from_eating)
+      regret_pass.append(avg_regret_from_passing)
+      mushrooms_eaten.append(avg_mushrooms_eaten)
     
     if (i+1) % 500 == 0:
       plt.plot(np.array(bnn_loss), label='BNN loss')
@@ -231,40 +260,30 @@ if __name__ == '__main__':
       plt.savefig('results/{}/graphs/bnn_loss_{}'.format(args.experiment_name, i+1))
       plt.clf()
       
-      plt.plot(np.array(eg5_regret), label='Epsilon-Greedy 5% Regret')
-      plt.plot(np.array(eg1_regret), label='Epsilon-Greedy 1% Regret')
-      plt.plot(np.array(eg0_regret), label='Greedy Regret')
-      plt.plot(np.array(bnn_regret), label='BNN Regret')
+      for env_set, regret, _, _, _ in envs:
+        plt.plot(np.array(regret), label=env_set[0].name)
       plt.legend()
       plt.ylabel('Cumulative Regret')
       plt.savefig('results/{}/graphs/regret_{}'.format(args.experiment_name, i+1))
       plt.clf()
-      
-      plt.plot(np.array(eg5_mushrooms_eaten), label='Epsilon-Greedy 5%')
-      plt.plot(np.array(eg1_mushrooms_eaten), label='Epsilon-Greedy 1%')
-      plt.plot(np.array(eg0_mushrooms_eaten), label='Greedy')
-      plt.plot(np.array(bnn_mushrooms_eaten), label='BNN')
-      plt.legend()
-      plt.ylabel('Mushrooms Eaten')
-      plt.savefig('results/{}/graphs/mushrooms_eaten_{}'.format(args.experiment_name, i+1))
-      plt.clf()
 
-      plt.plot(np.array(eg5_regret_from_eating), label='Epsilon-Greedy 5%')
-      plt.plot(np.array(eg1_regret_from_eating), label='Epsilon-Greedy 1%')
-      plt.plot(np.array(eg0_regret_from_eating), label='Greedy')
-      plt.plot(np.array(bnn_regret_from_eating), label='BNN')
+      for env_set, _, regret_eat, _, _ in envs:
+        plt.plot(np.array(regret_eat), label=env_set[0].name)
       plt.legend()
       plt.ylabel('Cumulative Regret from Eating')
       plt.savefig('results/{}/graphs/regret_eating_{}'.format(args.experiment_name, i+1))
       plt.clf()
 
-      plt.plot(np.array(eg5_regret_from_passing), label='Epsilon-Greedy 5%')
-      plt.plot(np.array(eg1_regret_from_passing), label='Epsilon-Greedy 1%')
-      plt.plot(np.array(eg0_regret_from_passing), label='Greedy')
-      plt.plot(np.array(bnn_regret_from_passing), label='BNN')
+      for env_set, _, _, regret_pass, _ in envs:
+        plt.plot(np.array(regret_pass), label=env_set[0].name)
       plt.legend()
       plt.ylabel('Cumulative Regret from Passing')
       plt.savefig('results/{}/graphs/regret_passing_{}'.format(args.experiment_name, i+1))
       plt.clf()
 
-      bnn_loss = []
+      for env_set, _, _, _, mushrooms_eaten in envs:
+        plt.plot(np.array(mushrooms_eaten), label=env_set[0].name)
+      plt.legend()
+      plt.ylabel('Mushrooms Eaten')
+      plt.savefig('results/{}/graphs/mushrooms_eaten_{}'.format(args.experiment_name, i+1))
+      plt.clf()
