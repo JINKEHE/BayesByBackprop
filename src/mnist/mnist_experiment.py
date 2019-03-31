@@ -44,6 +44,8 @@ def get_args(args=None):
     parser.add_argument('--scale_mixture_pi', type=float, default=0.5)
     parser.add_argument('--scale_mixture_log_sigma1', type=float, default=-0.0)
     parser.add_argument('--scale_mixture_log_sigma2', type=float, default=-6.0)
+    parser.add_argument('--lr_scheduler_step_size', type=int, default=1000)
+    parser.add_argument('--lr_scheduler_gamma', type=float, default=0.1)
     # for minibatch training 
     parser.add_argument('--use_normalized', dest='use_normalized', action='store_true')
     args = parser.parse_args()
@@ -58,6 +60,8 @@ if __name__ == '__main__':
     BatchSize = args.batch_size
     N_units = args.num_units
     network_type = args.network_type
+    lr_scheduler_step_size = args.lr_scheduler_step_size
+    lr_scheduler_gamma = args.lr_scheduler_gamma
     assert network_type == 'standard' or network_type == 'bayesian'
     optimizer_type = args.optimizer
     preprocess = args.preprocess
@@ -202,6 +206,7 @@ if __name__ == '__main__':
     else:
         raise ValueError
 
+    scheduler = torch.optim.lr_scheduler.StepLR(optim, step_size=lr_scheduler_step_size, gamma=lr_scheduler_gamma)
     # the main training loop
     train_accu_lst = []
     test_accu_lst = []
@@ -220,17 +225,19 @@ if __name__ == '__main__':
 
     normalized_factor = 1/N_Train_Batch
     for i_ep in range(N_Epochs):
-
+        scheduler.step()
         # Training
         net.train()
         if use_normalized:
             normalized_factor = 1
+        total_loss = 0
+        total_kl = 0
         for X, Y in train_loader:
             batch_X = Variable(X.view(X.size()[0], -1))
             batch_Y = Variable(Y.view(X.size()[0]))
 
             if use_normalized:
-                normalized_factor *= 2
+                normalized_factor /= 2
             if use_cuda:
                 batch_X, batch_Y = batch_X.cuda(), batch_Y.cuda()
 
@@ -239,13 +246,17 @@ if __name__ == '__main__':
                 y_pred = net(batch_X)
                 loss = loss_fn(y_pred, batch_Y)
             elif network_type == 'bayesian':
-                loss, _ , _ = net.cost_function(batch_X, batch_Y, num_samples=N_Samples_Training, num_batches = 1/normalized_factor)
+                loss, kl , _ = net.cost_function(batch_X, batch_Y, num_samples=N_Samples_Training, ratio = normalized_factor)
             else:
                 raise ValueError
 
+            total_loss += loss.item()
+            total_kl += kl.item()
             # detect nan
             if torch.isnan(loss):
                 print("Loss NAN.")
+                for p in net.parameters():
+                    print(p)
                 raise ValueError
 
             # do backpropagation
@@ -257,6 +268,7 @@ if __name__ == '__main__':
         if network_type == 'standard':
             net.eval()
         # do not use evaluation mode for bayesian networks because we do sampling during testing
+        print(total_loss, total_kl)
 
         # test on training set
 
@@ -289,6 +301,9 @@ if __name__ == '__main__':
         print('Epoch', i_ep, '|  Test Accuracy:', test_accu, '%', '| Test Error: ', round(100-test_accu, 2), '%')
 
         test_accu_lst.append(test_accu)
+
+    for p in net.parameters():
+        print(p)
 
     # to report the final test error, I will use the average of test errors of the last 10 epochs
     report_test_accu_mean = np.average(test_accu_lst[-10:])

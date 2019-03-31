@@ -235,7 +235,7 @@ class BayesianNN(nn.Module):
       log_posterior += layer.log_posterior
     return log_posterior
 
-  def cost_function(self, inputs, targets, num_samples, num_batches):
+  def cost_function(self, inputs, targets, num_samples, ratio):
     sum_log_posterior = 0
     sum_log_prior = 0
     sum_negative_log_likelihood = 0
@@ -254,7 +254,7 @@ class BayesianNN(nn.Module):
          negative_log_likelihood = - dist.Normal(
              targets, SIGMA).log_prob(outputs).sum()
       sum_negative_log_likelihood += negative_log_likelihood
-    kl_divergence = (sum_log_posterior / num_samples - sum_log_prior / num_samples) / num_batches
+    kl_divergence = (sum_log_posterior / num_samples - sum_log_prior / num_samples) * ratio
     negative_log_likelihood = sum_negative_log_likelihood / num_samples
     loss =  kl_divergence + negative_log_likelihood
     return loss, kl_divergence, negative_log_likelihood
