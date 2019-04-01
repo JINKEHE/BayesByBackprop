@@ -2,6 +2,7 @@
 # mnist/
 src/mnist/mnist_dataset/
 results/
+src/mnist_dataset/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

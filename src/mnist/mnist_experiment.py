@@ -14,9 +14,6 @@ import argparse
 import pickle
 import torch.nn.functional as f
 
-# TODO: L2 regularization???
-# TODO: set up logging - may not be necessary
-
 # check whether we are using GPU or not
 use_cuda = torch.cuda.is_available()
 
@@ -46,7 +43,7 @@ def get_args(args=None):
     parser.add_argument('--scale_mixture_log_sigma2', type=float, default=-6.0)
     parser.add_argument('--lr_scheduler_step_size', type=int, default=1000)
     parser.add_argument('--lr_scheduler_gamma', type=float, default=0.1)
-    # for minibatch training 
+    # for minibatch training
     parser.add_argument('--use_normalized', dest='use_normalized', action='store_true')
     args = parser.parse_args()
     return args
@@ -65,6 +62,7 @@ if __name__ == '__main__':
     assert network_type == 'standard' or network_type == 'bayesian'
     optimizer_type = args.optimizer
     preprocess = args.preprocess
+    use_normalized = args.use_normalized
     print("Experiment Settings")
     print("num epochs: {}".format(N_Epochs))
     print("batch size: {}".format(BatchSize))
@@ -88,6 +86,7 @@ if __name__ == '__main__':
         use_normalized = args.use_normalized
         print("training sample size: {}".format(N_Samples_Training))
         print("testing sample size: {}".format(N_Samples_Testing))
+        print("use normalized:", use_noramlized)
         prior_type = args.prior_type
         if prior_type == "scale_mixture":
             mixture_sigma1 = torch.tensor([math.exp(args.scale_mixture_log_sigma1)])
@@ -247,16 +246,15 @@ if __name__ == '__main__':
                 loss = loss_fn(y_pred, batch_Y)
             elif network_type == 'bayesian':
                 loss, kl , _ = net.cost_function(batch_X, batch_Y, num_samples=N_Samples_Training, ratio = normalized_factor)
+                total_loss += loss.item()
+                total_kl += kl.item()
+                # detect nan
+                if torch.isnan(loss):
+                    print("Loss NAN.")
+                    for p in net.parameters():
+                        print(p)
+                    raise ValueError
             else:
-                raise ValueError
-
-            total_loss += loss.item()
-            total_kl += kl.item()
-            # detect nan
-            if torch.isnan(loss):
-                print("Loss NAN.")
-                for p in net.parameters():
-                    print(p)
                 raise ValueError
 
             # do backpropagation

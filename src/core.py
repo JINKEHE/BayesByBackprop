@@ -131,10 +131,13 @@ class BayesianLayer(nn.Module):
     epsilon = self.normal_dist.sample(rho.size()).squeeze(-1)
     return mu + torch.log2(1 + torch.exp(rho)) * epsilon
 
-  def forward(self, input_data, sample=False):
+  def forward(self, input_data, sample=False, debug=False):
     if self.training or sample:
       weights = self._compute_gaussian_sample(self.mu_weights, self.rho_weights)
       bias = self._compute_gaussian_sample(self.mu_bias, self.rho_bias)
+      if debug is True:
+        print("sampled weights:")
+        print(weights)
       self.log_prior = (self.prior_weights.log_prob(weights).sum() +
                         self.prior_bias.log_prob(bias).sum() )
       sigma_weights = torch.log(1 + torch.exp(self.rho_weights))
@@ -151,7 +154,7 @@ class BayesianLayer(nn.Module):
               self.mu_weights, sigma_weights).log_prob(weights).sum())
         print('Bias log prob: ' )
         print(dist.Normal(self.mu_bias, sigma_bias).log_prob(bias).sum())
-
+    else:
       weights = self.mu_weights
       bias = self.mu_bias
 
@@ -205,10 +208,12 @@ class BayesianNN(nn.Module):
     self.output_size = self.layers[-1].output_size
     self.task_type = task_type
 
-  def forward(self, input_data, sample=False):
+  def forward(self, input_data, sample=True, debug=False):
     current_data = input_data
     for layer in self.layers:
-      current_data = layer.forward(current_data, sample)
+      current_data = layer.forward(current_data, sample, debug=debug)
+    if sample is False:
+        print("not sampling.")
     return current_data
 
   # sample a bunch of weights for the network
@@ -219,7 +224,12 @@ class BayesianNN(nn.Module):
     with torch.no_grad():
         outputs = torch.empty(num_samples, input_data.size()[0], self.output_size)
         for i in range(num_samples):
-            outputs[i] = self.forward(input_data, sample=True)
+            print("*"*20)
+            outputs[i] = self.forward(input_data, sample=True, debug=True)
+            print(outputs[i][0])
+            print("*"*20)
+        stds = outputs.std(0)
+        print("std in probability distributions:", stds.mean(0))
         outputs = outputs.mean(0)
     return outputs
 
@@ -240,7 +250,7 @@ class BayesianNN(nn.Module):
     sum_log_prior = 0
     sum_negative_log_likelihood = 0
     for n in range(num_samples):
-      outputs = self(inputs)
+      outputs = self(inputs, sample=True)
       sum_log_posterior += self.log_posterior()
       sum_log_prior += self.log_prior()
       if self.task_type == TaskType.CLASSIFICATION:
