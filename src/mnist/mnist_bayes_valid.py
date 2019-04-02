@@ -21,7 +21,7 @@ valid_ratio = 1/6
 Download_MNIST = True
 
 import os.path
-dataset_path = os.path.join(os.path.dirname(""), 'mnist')
+dataset_path = os.path.join(os.path.dirname(""), 'mnist_dataset')
 
 raw_train_set = torchvision.datasets.MNIST(
     root=dataset_path,

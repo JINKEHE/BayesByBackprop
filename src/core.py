@@ -136,8 +136,9 @@ class BayesianLayer(nn.Module):
       weights = self._compute_gaussian_sample(self.mu_weights, self.rho_weights)
       bias = self._compute_gaussian_sample(self.mu_bias, self.rho_bias)
       if debug is True:
-        print("sampled weights:")
-        print(weights)
+        pass
+        # print("sampled weights:")
+        # print(weights)
       self.log_prior = (self.prior_weights.log_prob(weights).sum() +
                         self.prior_bias.log_prob(bias).sum() )
       sigma_weights = torch.log(1 + torch.exp(self.rho_weights))
@@ -224,12 +225,12 @@ class BayesianNN(nn.Module):
     with torch.no_grad():
         outputs = torch.empty(num_samples, input_data.size()[0], self.output_size)
         for i in range(num_samples):
-            print("*"*20)
+            # print("*"*20)
             outputs[i] = self.forward(input_data, sample=True, debug=True)
-            print(outputs[i][0])
-            print("*"*20)
+            # print(outputs[i][0])
+            # print("*"*20)
         stds = outputs.std(0)
-        print("std in probability distributions:", stds.mean(0))
+        # print("std in probability distributions:", stds.mean(0))
         outputs = outputs.mean(0)
     return outputs
 

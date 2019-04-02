@@ -86,7 +86,7 @@ if __name__ == '__main__':
         use_normalized = args.use_normalized
         print("training sample size: {}".format(N_Samples_Training))
         print("testing sample size: {}".format(N_Samples_Testing))
-        print("use normalized:", use_noramlized)
+        print("use normalized:", use_normalized)
         prior_type = args.prior_type
         if prior_type == "scale_mixture":
             mixture_sigma1 = torch.tensor([math.exp(args.scale_mixture_log_sigma1)])
