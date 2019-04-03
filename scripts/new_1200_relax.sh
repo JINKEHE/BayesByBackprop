@@ -6,10 +6,10 @@ python mnist_experiment.py \
     --batch_size 128 \
     --network_type bayesian \
     --optimizer SGD \
-    --num_samples_training 4 \
-    --num_samples_testing 4 \
+    --num_samples_training 2 \
+    --num_samples_testing 2 \
     --prior_type scale_mixture \
-    --scale_mixture_pi 0.5 \
+    --scale_mixture_pi 0.75 \
     --scale_mixture_log_sigma1 -2.0 \
-    --scale_mixture_log_sigma2 -8.0 \
+    --scale_mixture_log_sigma2 -7.0 \
     --preprocess \
