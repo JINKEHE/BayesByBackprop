@@ -1,0 +1,194 @@
+Use GPU: False
+1.0.1.post2
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(1.4862, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(1.9207, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(-0.7626, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(2.0076, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Weights log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
+Bias log prob: 
+tensor(nan, grad_fn=<SumBackward0>)
