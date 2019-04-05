@@ -43,6 +43,10 @@ def get_args(args=None):
     parser.add_argument('--scale_mixture_log_sigma2', type=float, default=-6.0)
     parser.add_argument('--lr_scheduler_step_size', type=int, default=1000)
     parser.add_argument('--lr_scheduler_gamma', type=float, default=0.1)
+    parser.add_argument('--initial_mu_weights', type=float, nargs=2, default=[-0.03,0.03])
+    parser.add_argument('--initial_rho_weights', type=float, nargs=2, default=[-4,-2])
+    parser.add_argument('--initial_mu_bias', type=float, nargs=2, default=[-0.03,0.03])
+    parser.add_argument('--initial_rho_bias', type=float, nargs=2, default=[-4,-2])
     # for minibatch training
     parser.add_argument('--use_normalized', dest='use_normalized', action='store_true')
     args = parser.parse_args()
@@ -187,8 +191,16 @@ if __name__ == '__main__':
             activation_config=[ActivationType.RELU, ActivationType.RELU, ActivationType.SOFTMAX],
             prior_type=prior_type,
             prior_params=prior_params,
-            task_type=TaskType.CLASSIFICATION
+            task_type=TaskType.CLASSIFICATION,
+            initial_mu_weights=args.initial_mu_weights,
+            initial_rho_weights=args.initial_rho_weights,
+            initial_mu_bias=args.initial_mu_bias,
+            initial_rho_bias=args.initial_rho_bias
         )
+        print("initial mu weights:", args.initial_mu_weights)
+        print("initial rho weights:", args.initial_rho_weights)
+        print("initial mu bias:", args.initial_mu_bias)
+        print("initial rho bias", args.initial_rho_bias)
     else:
         raise ValueError
 
@@ -266,7 +278,8 @@ if __name__ == '__main__':
         if network_type == 'standard':
             net.eval()
         # do not use evaluation mode for bayesian networks because we do sampling during testing
-        print(total_loss, total_kl)
+        if network_type == 'bayesian':
+            print(total_loss, total_kl)
 
         # test on training set
 
@@ -286,14 +299,27 @@ if __name__ == '__main__':
 
         # test on testing set
 
+        true_class = test_Y.data.cpu().numpy().ravel()
+
         if network_type == 'standard':
             pred_class = net(test_X).cpu().data.numpy().argmax(axis=1)
         elif network_type == 'bayesian':
             pred_class = net.predict_by_sampling(test_X, num_samples=N_Samples_Testing).data.cpu().numpy().argmax(axis=1)
+            pred_class_without_sampling = net(test_X, sample=False).cpu().detach().numpy().argmax(axis=1)
+            test_accu_without_sampling = compute_accu(pred_class_without_sampling, true_class, 2)
+            print('Epoch', i_ep, '|  Test Accuracy without sampling:', test_accu_without_sampling, '%', '| Test Error: ', round(100-test_accu_without_sampling, 2), '%')
+            pred_class_2 = net.predict_by_sampling(test_X, num_samples=2).data.cpu().numpy().argmax(axis=1)
+            pred_class_4 = net.predict_by_sampling(test_X, num_samples=4).data.cpu().numpy().argmax(axis=1)
+            pred_class_6 = net.predict_by_sampling(test_X, num_samples=6).data.cpu().numpy().argmax(axis=1)
+            pred_class_20 = net.predict_by_sampling(test_X, num_samples=20).data.cpu().numpy().argmax(axis=1)
+            pred_class_100 = net.predict_by_sampling(test_X, num_samples=100).data.cpu().numpy().argmax(axis=1)
+            print("sample 2 test error: {}".format(100-compute_accu(pred_class_2, true_class, 2)))
+            print("sample 4 test error: {}".format(100-compute_accu(pred_class_4, true_class, 2)))
+            print("sample 6 test error: {}".format(100-compute_accu(pred_class_6, true_class, 2)))
+            print("sample 20 test error: {}".format(100-compute_accu(pred_class_20, true_class, 2)))
+            print("sample 100 test error: {}".format(100-compute_accu(pred_class_100, true_class, 2)))
         else:
             raise ValueError
-
-        true_class = test_Y.data.cpu().numpy().ravel()
 
         test_accu = compute_accu(pred_class, true_class, 2)
         print('Epoch', i_ep, '|  Test Accuracy:', test_accu, '%', '| Test Error: ', round(100-test_accu, 2), '%')
