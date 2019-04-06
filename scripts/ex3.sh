@@ -12,7 +12,7 @@ python mnist_experiment.py \
     --prior_type scale_mixture \
     --scale_mixture_pi 0.75 \
     --scale_mixture_log_sigma1 -0.0 \
-    --scale_mixture_log_sigma2 -6.0 \
+    --scale_mixture_log_sigma2 -7.0 \
     --initial_rho_weights -4 -3 \
     --initial_rho_bias -4 -3 \
     --preprocess \
