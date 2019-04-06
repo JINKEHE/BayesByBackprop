@@ -133,7 +133,7 @@ class BayesianLayer(nn.Module):
 
   def _compute_gaussian_sample(self, mu, rho):
     epsilon = self.normal_dist.sample(rho.size()).squeeze(-1)
-    return mu + torch.log2(1 + torch.exp(rho)) * epsilon
+    return mu + torch.log(1 + torch.exp(rho)) * epsilon
 
   def forward(self, input_data, sample=False, debug=False):
     if self.training or sample:
