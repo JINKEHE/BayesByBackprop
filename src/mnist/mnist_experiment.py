@@ -308,7 +308,6 @@ if __name__ == '__main__':
             pred_class = net(test_X).cpu().data.numpy().argmax(axis=1)
         elif network_type == 'bayesian':
             pred_class = net.predict_by_sampling(test_X, num_samples=N_Samples_Testing).data.cpu().numpy().argmax(axis=1)
-            print('Epoch', i_ep, '|  Test Accuracy without sampling:', test_accu_without_sampling, '%', '| Test Error: ', round(100-test_accu_without_sampling, 2), '%')
         else:
             raise ValueError
 
