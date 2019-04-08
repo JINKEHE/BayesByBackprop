@@ -20,6 +20,7 @@ use_cuda = torch.cuda.is_available()
 def get_args(args=None):
     # the basic arguments for MNIST experiment
     parser = argparse.ArgumentParser()
+    parser.add_argument('--experiment_name', type=str, default=None)
     parser.add_argument('--num_epochs', type=int, default=600)
     parser.add_argument('--num_units', type=int, help='the number of units in the hidden layer', default=1200)
     parser.add_argument('--lr', type=float, help='learning rate', default=1e-3)
@@ -57,6 +58,7 @@ if __name__ == '__main__':
     # read experiment arguments
     args = get_args(sys.argv)
     LearningRate = args.lr
+    experiment_name = args.experiment_name
     N_Epochs = args.num_epochs
     BatchSize = args.batch_size
     N_units = args.num_units
@@ -108,15 +110,16 @@ if __name__ == '__main__':
                 gaussian_sigma = gaussian_sigma.cuda()
             print("prior distribution: gaussian (mean: {}, sigma: {})".format(gaussian_mean, gaussian_sigma))
 
-    experiment_name = "mnist_num_units_{}_optim_{}".format(N_units, optimizer_type)
-    if network_type == 'standard':
-        if use_dropout:
-            experiment_name += "_standard_dropout_{}".format(dropout_rate)
-        else:
-            experiment_name += "_standard_SGD"
-    elif network_type == 'bayesian':
-        # maybe also add prior distribution parameters to the file name?
-        experiment_name += "_bayesian_{}_num_samples_testing_{}".format(prior_type, N_Samples_Testing)
+    if experiment_name is None:
+        experiment_name = "mnist_num_units_{}_optim_{}".format(N_units, optimizer_type)
+        if network_type == 'standard':
+            if use_dropout:
+                experiment_name += "_standard_dropout_{}".format(dropout_rate)
+            else:
+                experiment_name += "_standard_SGD"
+        elif network_type == 'bayesian':
+            # maybe also add prior distribution parameters to the file name?
+            experiment_name += "_bayesian_{}_num_samples_testing_{}".format(prior_type, N_Samples_Testing)
     print(experiment_name)
 
     # load the dataset
@@ -305,19 +308,7 @@ if __name__ == '__main__':
             pred_class = net(test_X).cpu().data.numpy().argmax(axis=1)
         elif network_type == 'bayesian':
             pred_class = net.predict_by_sampling(test_X, num_samples=N_Samples_Testing).data.cpu().numpy().argmax(axis=1)
-            pred_class_without_sampling = net(test_X, sample=False).cpu().detach().numpy().argmax(axis=1)
-            test_accu_without_sampling = compute_accu(pred_class_without_sampling, true_class, 2)
             print('Epoch', i_ep, '|  Test Accuracy without sampling:', test_accu_without_sampling, '%', '| Test Error: ', round(100-test_accu_without_sampling, 2), '%')
-            pred_class_2 = net.predict_by_sampling(test_X, num_samples=2).data.cpu().numpy().argmax(axis=1)
-            pred_class_4 = net.predict_by_sampling(test_X, num_samples=4).data.cpu().numpy().argmax(axis=1)
-            pred_class_6 = net.predict_by_sampling(test_X, num_samples=6).data.cpu().numpy().argmax(axis=1)
-            pred_class_20 = net.predict_by_sampling(test_X, num_samples=20).data.cpu().numpy().argmax(axis=1)
-            pred_class_100 = net.predict_by_sampling(test_X, num_samples=100).data.cpu().numpy().argmax(axis=1)
-            print("sample 2 test error: {}".format(100-compute_accu(pred_class_2, true_class, 2)))
-            print("sample 4 test error: {}".format(100-compute_accu(pred_class_4, true_class, 2)))
-            print("sample 6 test error: {}".format(100-compute_accu(pred_class_6, true_class, 2)))
-            print("sample 20 test error: {}".format(100-compute_accu(pred_class_20, true_class, 2)))
-            print("sample 100 test error: {}".format(100-compute_accu(pred_class_100, true_class, 2)))
         else:
             raise ValueError
 
