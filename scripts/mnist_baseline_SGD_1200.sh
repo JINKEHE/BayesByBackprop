@@ -6,4 +6,6 @@ python mnist_experiment.py \
     --batch_size 128 \
     --network_type standard \
     --optimizer SGD \
+    --experiment_name "SGD_baseline" \
+    --save_weights \
     --preprocess \

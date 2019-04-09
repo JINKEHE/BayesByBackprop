@@ -20,6 +20,7 @@ use_cuda = torch.cuda.is_available()
 def get_args(args=None):
     # the basic arguments for MNIST experiment
     parser = argparse.ArgumentParser()
+    parser.add_argument('--save_weights', dest="save_weights", action="store_true")
     parser.add_argument('--experiment_name', type=str, default=None)
     parser.add_argument('--num_epochs', type=int, default=600)
     parser.add_argument('--num_units', type=int, help='the number of units in the hidden layer', default=1200)
@@ -58,6 +59,7 @@ if __name__ == '__main__':
     # read experiment arguments
     args = get_args(sys.argv)
     LearningRate = args.lr
+    save_weights = args.save_weights
     experiment_name = args.experiment_name
     N_Epochs = args.num_epochs
     BatchSize = args.batch_size
@@ -335,3 +337,5 @@ if __name__ == '__main__':
         pickle.dump(train_accu_lst, f)
     with open(result_folder_path+"test_accu_lst.pkl", 'wb') as f:
         pickle.dump(test_accu_lst, f)
+    if save_weights is True:
+        torch.save(net, result_folder_path+"weights.pt")
