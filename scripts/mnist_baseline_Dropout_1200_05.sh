@@ -8,4 +8,6 @@ python mnist_experiment.py \
     --optimizer SGD \
     --use_dropout \
     --dropout_rate 0.5 \
+    --experiment_name "Dropout_baseline" \
+    --save_weights \
     --preprocess \
