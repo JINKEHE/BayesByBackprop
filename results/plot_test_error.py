@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
 import pickle
+import seaborn as sns
+
+sns.set()
 
 dropout_path = "Dropout_baseline/"
 sgd_path = "SGD_baseline/"
