@@ -5,8 +5,8 @@ import sys
 
 sns.set()
 
-dropout_path = "Dropout_baseline/"
-sgd_path = "SGD_baseline/"
+dropout_path = "Dropout_baseline_with_decay/"
+sgd_path = "SGD_baseline_with_decay/"
 bayesian_path = "bayes1/"
 
 dropout_error = [round(100-accu, 2) for accu in pickle.load(open(dropout_path+"test_accu_lst.pkl", "rb"))]
