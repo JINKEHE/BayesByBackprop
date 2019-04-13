@@ -1,0 +1,1004 @@
+Use GPU: False
+1.0.1.post2
+99.
+Action 0 - predicted reward: tensor([[-1.5113]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-1.8869]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 500.0
+1. Loss: 2.477752447128296
+Action 0 - predicted reward: tensor([[-3.0236]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-3.1672]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 610.0
+1. Loss: 3.3360755443573
+Action 0 - predicted reward: tensor([[-0.5842]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-0.9712]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 465.0
+1. Loss: 1.2557812929153442
+Action 0 - predicted reward: tensor([[-1.8832]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-1.8074]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose eat and got a reward of -35.0.
+Cumulative regret is 565.0
+1. Loss: 207948.78125
+199.
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 705.0
+3. Loss: 0.5922057032585144
+Action 0 - predicted reward: tensor([[1.7607]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[1.4562]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose pass and got a reward of 0.
+Cumulative regret is 885.0
+3. Loss: 0.9223993420600891
+Action 0 - predicted reward: tensor([[0.5635]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-0.5395]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 770.0
+3. Loss: 0.17276498675346375
+Action 0 - predicted reward: tensor([[-1.6106]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-1.6234]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose pass and got a reward of 0.
+Cumulative regret is 990.0
+3. Loss: 192263.59375
+299.
+Action 0 - predicted reward: tensor([[0.6198]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-7.8785]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose pass and got a reward of 0.
+Cumulative regret is 1045.0
+4. Loss: 0.4783977270126343
+Action 0 - predicted reward: tensor([[0.2592]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-20.4399]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 1095.0
+4. Loss: 0.28169259428977966
+Action 0 - predicted reward: tensor([[0.1211]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[0.0678]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 1030.0
+4. Loss: 0.021733874455094337
+Action 0 - predicted reward: tensor([[-2.6622]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-2.6264]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 1735.0
+4. Loss: 251028.234375
+399.
+Action 0 - predicted reward: tensor([[1.3549]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.2134]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 1245.0
+6. Loss: 0.33309826254844666
+Action 0 - predicted reward: tensor([[-0.9165]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-16.3991]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 1395.0
+6. Loss: 0.6488818526268005
+Action 0 - predicted reward: tensor([[0.1302]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[0.1415]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 1385.0
+6. Loss: 0.6098745465278625
+Action 0 - predicted reward: tensor([[-2.7057]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-2.7582]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2245.0
+6. Loss: 245740.140625
+499.
+Action 0 - predicted reward: tensor([[-0.0881]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-32.4693]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 1470.0
+7. Loss: 0.28357717394828796
+Action 0 - predicted reward: tensor([[-1.8842]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-2.8386]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 1545.0
+7. Loss: 0.319815069437027
+Action 0 - predicted reward: tensor([[0.3318]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-12.3183]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose pass and got a reward of 0.
+Cumulative regret is 1645.0
+7. Loss: 0.24510055780410767
+Action 0 - predicted reward: tensor([[-2.7318]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-2.7318]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2775.0
+7. Loss: 255876.5
+599.
+Action 0 - predicted reward: tensor([[0.0166]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[6.0719]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 1655.0
+9. Loss: 0.159921795129776
+Action 0 - predicted reward: tensor([[1.1305]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-28.9332]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 1700.0
+9. Loss: 0.21697932481765747
+Action 0 - predicted reward: tensor([[-2.6872]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-6.2286]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 1750.0
+9. Loss: 0.19046376645565033
+Action 0 - predicted reward: tensor([[-2.2601]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-2.3149]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3180.0
+9. Loss: 235432.640625
+699.
+Action 0 - predicted reward: tensor([[0.5347]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-13.9482]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 1875.0
+10. Loss: 0.1139027401804924
+Action 0 - predicted reward: tensor([[0.1358]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-31.8887]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 1910.0
+10. Loss: 0.13693174719810486
+Action 0 - predicted reward: tensor([[0.0660]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.1981]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 1865.0
+10. Loss: 0.04603124409914017
+Action 0 - predicted reward: tensor([[-1.9995]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-1.9996]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose pass and got a reward of 0.
+Cumulative regret is 3500.0
+10. Loss: 230315.640625
+799.
+Action 0 - predicted reward: tensor([[-0.1626]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-13.8777]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2035.0
+12. Loss: 0.11340635269880295
+Action 0 - predicted reward: tensor([[-2.7494]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-38.0380]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2065.0
+12. Loss: 0.08711015433073044
+Action 0 - predicted reward: tensor([[-0.1150]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-2.6132]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 1970.0
+12. Loss: 0.02157159335911274
+Action 0 - predicted reward: tensor([[-1.5673]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-1.5673]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose pass and got a reward of 0.
+Cumulative regret is 3725.0
+12. Loss: 210982.734375
+899.
+Action 0 - predicted reward: tensor([[0.5197]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.4749]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2125.0
+14. Loss: 0.044205233454704285
+Action 0 - predicted reward: tensor([[-0.3156]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.5719]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2175.0
+14. Loss: 0.5680030584335327
+Action 0 - predicted reward: tensor([[-0.0168]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.7068]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2015.0
+14. Loss: 0.02705272287130356
+Action 0 - predicted reward: tensor([[-1.7380]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-1.7329]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4180.0
+14. Loss: 217265.859375
+999.
+Action 0 - predicted reward: tensor([[0.2751]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[6.2715]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2310.0
+15. Loss: 0.04192572087049484
+Action 0 - predicted reward: tensor([[-0.4057]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.5228]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2385.0
+15. Loss: 0.0527302548289299
+Action 0 - predicted reward: tensor([[-0.1177]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9550]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2070.0
+15. Loss: 0.018485743552446365
+Action 0 - predicted reward: tensor([[-1.3552]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-1.3436]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4375.0
+15. Loss: 198033.53125
+1099.
+Action 0 - predicted reward: tensor([[0.4345]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-7.8701]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2535.0
+17. Loss: 0.08865734189748764
+Action 0 - predicted reward: tensor([[-0.4545]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-29.1176]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2490.0
+17. Loss: 0.04113859683275223
+Action 0 - predicted reward: tensor([[0.2301]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-53.5860]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2175.0
+17. Loss: 0.04692656919360161
+Action 0 - predicted reward: tensor([[-1.1304]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-1.3016]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4600.0
+17. Loss: 190823.65625
+1199.
+Action 0 - predicted reward: tensor([[0.0730]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.2456]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2685.0
+18. Loss: 0.03944765776395798
+Action 0 - predicted reward: tensor([[-0.3179]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-30.9431]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2630.0
+18. Loss: 0.05066072568297386
+Action 0 - predicted reward: tensor([[-0.0232]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-28.3605]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2185.0
+18. Loss: 0.018678974360227585
+Action 0 - predicted reward: tensor([[-0.9049]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.8779]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4770.0
+18. Loss: 182232.078125
+1299.
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2725.0
+20. Loss: 0.0662311539053917
+Action 0 - predicted reward: tensor([[-0.4087]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.6254]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2775.0
+20. Loss: 0.025905363261699677
+Action 0 - predicted reward: tensor([[0.1433]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9561]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2260.0
+20. Loss: 0.025908848270773888
+Action 0 - predicted reward: tensor([[-1.0894]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-1.3152]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 5030.0
+20. Loss: 175367.28125
+1399.
+Action 0 - predicted reward: tensor([[0.0239]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.3852]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2870.0
+21. Loss: 0.04974621906876564
+Action 0 - predicted reward: tensor([[0.0524]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9909]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2985.0
+21. Loss: 0.029343511909246445
+Action 0 - predicted reward: tensor([[-0.1069]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-45.1295]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2265.0
+21. Loss: 0.01387912780046463
+Action 0 - predicted reward: tensor([[-0.5806]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.5758]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5225.0
+21. Loss: 171190.953125
+1499.
+Action 0 - predicted reward: tensor([[0.3460]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.1360]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2975.0
+23. Loss: 0.050197601318359375
+Action 0 - predicted reward: tensor([[-0.5321]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-50.4238]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3125.0
+23. Loss: 0.03489769250154495
+Action 0 - predicted reward: tensor([[0.2727]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.7736]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2305.0
+23. Loss: 0.025075078010559082
+Action 0 - predicted reward: tensor([[-0.6911]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.8610]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 5305.0
+23. Loss: 161563.015625
+1599.
+Action 0 - predicted reward: tensor([[-0.1369]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-32.2171]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3050.0
+24. Loss: 0.051077183336019516
+Action 0 - predicted reward: tensor([[0.1193]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9182]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3230.0
+24. Loss: 0.021135706454515457
+Action 0 - predicted reward: tensor([[-0.0458]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-19.4496]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2445.0
+24. Loss: 0.03166210278868675
+Action 0 - predicted reward: tensor([[-0.4459]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.4594]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 5455.0
+24. Loss: 155452.296875
+1699.
+Action 0 - predicted reward: tensor([[-0.0523]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[3.6511]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3090.0
+26. Loss: 0.04100821539759636
+Action 0 - predicted reward: tensor([[-0.0469]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-23.3722]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3445.0
+26. Loss: 0.016708679497241974
+Action 0 - predicted reward: tensor([[-0.0121]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.8284]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2485.0
+26. Loss: 0.013502703048288822
+Action 0 - predicted reward: tensor([[-0.3471]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.4375]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 5575.0
+26. Loss: 147194.6875
+1799.
+Action 0 - predicted reward: tensor([[-0.6284]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.0014]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3235.0
+28. Loss: 0.0387708842754364
+Action 0 - predicted reward: tensor([[-0.2182]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-39.7626]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3585.0
+28. Loss: 0.05759565904736519
+Action 0 - predicted reward: tensor([[-0.0306]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-16.1540]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2495.0
+28. Loss: 0.009127838537096977
+Action 0 - predicted reward: tensor([[-0.4402]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.4305]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5855.0
+28. Loss: 147719.734375
+1899.
+Action 0 - predicted reward: tensor([[0.3455]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-26.1226]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3340.0
+29. Loss: 0.04244808107614517
+Action 0 - predicted reward: tensor([[0.0093]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[6.7671]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose eat and got a reward of -35.0.
+Cumulative regret is 3690.0
+29. Loss: 0.047807782888412476
+Action 0 - predicted reward: tensor([[0.0766]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9258]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2535.0
+29. Loss: 0.00829575676470995
+Action 0 - predicted reward: tensor([[-0.3693]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.3131]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 6085.0
+29. Loss: 146724.328125
+1999.
+Action 0 - predicted reward: tensor([[0.8176]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.8477]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3480.0
+31. Loss: 0.05385100841522217
+Action 0 - predicted reward: tensor([[0.0457]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-13.1720]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3840.0
+31. Loss: 0.03722390532493591
+Action 0 - predicted reward: tensor([[-0.0807]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9311]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2540.0
+31. Loss: 0.00711551820859313
+Action 0 - predicted reward: tensor([[-0.3595]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.6519]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 6275.0
+31. Loss: 143286.375
+2099.
+Action 0 - predicted reward: tensor([[0.4058]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.8350]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3560.0
+32. Loss: 0.048073794692754745
+Action 0 - predicted reward: tensor([[0.0305]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9458]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3945.0
+32. Loss: 0.040758293122053146
+Action 0 - predicted reward: tensor([[-0.3582]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.8794]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2540.0
+32. Loss: 0.006714371498674154
+Action 0 - predicted reward: tensor([[-0.1397]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.6029]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 6425.0
+32. Loss: 139720.984375
+2199.
+Action 0 - predicted reward: tensor([[0.1767]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.6337]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3775.0
+34. Loss: 0.0703989788889885
+Action 0 - predicted reward: tensor([[0.0766]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.1194]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3985.0
+34. Loss: 0.03133312240242958
+Action 0 - predicted reward: tensor([[-0.0076]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9616]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2545.0
+34. Loss: 0.006338707637041807
+Action 0 - predicted reward: tensor([[-0.1109]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.1107]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 6530.0
+34. Loss: 134306.234375
+2299.
+Action 0 - predicted reward: tensor([[-0.1965]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.6611]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3885.0
+35. Loss: 0.06519053131341934
+Action 0 - predicted reward: tensor([[0.0175]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-22.2575]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4055.0
+35. Loss: 0.04325765371322632
+Action 0 - predicted reward: tensor([[-0.0096]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-66.0587]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2580.0
+35. Loss: 0.006367231719195843
+Action 0 - predicted reward: tensor([[0.0098]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.0355]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 6620.0
+35. Loss: 131174.75
+2399.
+Action 0 - predicted reward: tensor([[0.0272]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.6686]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3940.0
+37. Loss: 0.05819696560502052
+Action 0 - predicted reward: tensor([[0.0142]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-21.4387]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4160.0
+37. Loss: 0.03948597237467766
+Action 0 - predicted reward: tensor([[0.0997]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-29.9500]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 2615.0
+37. Loss: 0.01525090541690588
+Action 0 - predicted reward: tensor([[0.0410]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.3971]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 6800.0
+37. Loss: 129368.2109375
+2499.
+Action 0 - predicted reward: tensor([[0.2969]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.3281]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4090.0
+39. Loss: 0.07897870242595673
+Action 0 - predicted reward: tensor([[-0.1297]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.3813]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4270.0
+39. Loss: 0.05266512930393219
+Action 0 - predicted reward: tensor([[0.0403]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9030]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2615.0
+39. Loss: 0.012473716400563717
+Action 0 - predicted reward: tensor([[0.0466]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.0469]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 6990.0
+39. Loss: 129277.609375
+2599.
+Action 0 - predicted reward: tensor([[-0.1572]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-37.9479]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4170.0
+40. Loss: 0.07004532217979431
+Action 0 - predicted reward: tensor([[0.3818]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-5.3786]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4375.0
+40. Loss: 0.05082198977470398
+Action 0 - predicted reward: tensor([[-0.0714]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.0189]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 2685.0
+40. Loss: 0.006650018505752087
+Action 0 - predicted reward: tensor([[0.0712]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.1234]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 7070.0
+40. Loss: 125370.6953125
+2699.
+Action 0 - predicted reward: tensor([[-0.1526]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-19.8107]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4245.0
+42. Loss: 0.06585755199193954
+Action 0 - predicted reward: tensor([[0.2510]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.5205]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4450.0
+42. Loss: 0.05063295736908913
+Action 0 - predicted reward: tensor([[0.1574]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[1.3922]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose eat and got a reward of -35.0.
+Cumulative regret is 2825.0
+42. Loss: 0.021376708522439003
+Action 0 - predicted reward: tensor([[0.0909]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.1392]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 7200.0
+42. Loss: 124131.234375
+2799.
+Action 0 - predicted reward: tensor([[0.0285]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.2488]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4320.0
+43. Loss: 0.06123959645628929
+Action 0 - predicted reward: tensor([[-0.3637]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.4711]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4520.0
+43. Loss: 0.05467754974961281
+Action 0 - predicted reward: tensor([[-0.0668]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9122]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3040.0
+43. Loss: 0.03698734939098358
+Action 0 - predicted reward: tensor([[0.1708]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.2408]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 7260.0
+43. Loss: 120876.71875
+2899.
+Action 0 - predicted reward: tensor([[-0.0316]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-20.7136]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4365.0
+45. Loss: 0.058632589876651764
+Action 0 - predicted reward: tensor([[-0.2781]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-24.2417]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4625.0
+45. Loss: 0.06140793859958649
+Action 0 - predicted reward: tensor([[-0.2725]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.0258]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3145.0
+45. Loss: 0.027433210983872414
+Action 0 - predicted reward: tensor([[0.2257]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.2389]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 7310.0
+45. Loss: 117483.9375
+2999.
+Action 0 - predicted reward: tensor([[-0.1056]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-24.0727]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4515.0
+46. Loss: 0.05575256422162056
+Action 0 - predicted reward: tensor([[0.0439]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.6740]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4800.0
+46. Loss: 0.0666273757815361
+Action 0 - predicted reward: tensor([[0.0603]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9160]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3145.0
+46. Loss: 0.021446386352181435
+Action 0 - predicted reward: tensor([[0.3331]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.4044]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 7505.0
+46. Loss: 117671.9140625
+3099.
+Action 0 - predicted reward: tensor([[-0.1489]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-24.8093]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4530.0
+48. Loss: 0.05393662303686142
+Action 0 - predicted reward: tensor([[-0.3818]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-77.3800]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4835.0
+48. Loss: 0.0660552829504013
+Action 0 - predicted reward: tensor([[0.3431]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.6744]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose eat and got a reward of -35.0.
+Cumulative regret is 3180.0
+48. Loss: 0.027735469862818718
+Action 0 - predicted reward: tensor([[0.3690]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.3807]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 7595.0
+48. Loss: 115943.96875
+3199.
+Action 0 - predicted reward: tensor([[0.1652]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.5391]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4640.0
+49. Loss: 0.060439229011535645
+Action 0 - predicted reward: tensor([[-0.0560]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-19.7006]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4870.0
+49. Loss: 0.06543822586536407
+Action 0 - predicted reward: tensor([[-0.1481]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.8198]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3285.0
+49. Loss: 0.017268721014261246
+Action 0 - predicted reward: tensor([[0.4010]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.3765]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 7685.0
+49. Loss: 114684.828125
+3299.
+Action 0 - predicted reward: tensor([[-0.0478]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-36.2836]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4715.0
+51. Loss: 0.06198330596089363
+Action 0 - predicted reward: tensor([[-0.2356]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.5403]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4945.0
+51. Loss: 0.06999851018190384
+Action 0 - predicted reward: tensor([[0.0208]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.0924]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3355.0
+51. Loss: 0.024542417377233505
+Action 0 - predicted reward: tensor([[0.4179]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.2336]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 7805.0
+51. Loss: 112796.265625
+3399.
+Action 0 - predicted reward: tensor([[-0.1478]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-16.7445]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4760.0
+53. Loss: 0.057297803461551666
+Action 0 - predicted reward: tensor([[0.1771]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.5607]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose eat and got a reward of -35.0.
+Cumulative regret is 4980.0
+53. Loss: 0.08137087523937225
+Action 0 - predicted reward: tensor([[0.0471]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-31.7265]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3425.0
+53. Loss: 0.03441649675369263
+Action 0 - predicted reward: tensor([[0.4270]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.5358]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 7865.0
+53. Loss: 111499.375
+3499.
+Action 0 - predicted reward: tensor([[-0.2193]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[3.8461]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5045.0
+54. Loss: 0.08561070263385773
+Action 0 - predicted reward: tensor([[-0.0134]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.7949]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5050.0
+54. Loss: 0.06784512847661972
+Action 0 - predicted reward: tensor([[0.0136]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-47.8217]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3460.0
+54. Loss: 0.028462884947657585
+Action 0 - predicted reward: tensor([[0.5164]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.5016]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose pass and got a reward of 0.
+Cumulative regret is 7880.0
+54. Loss: 107911.0234375
+3599.
+Action 0 - predicted reward: tensor([[-0.3065]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[6.3041]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5130.0
+56. Loss: 0.06875520199537277
+Action 0 - predicted reward: tensor([[0.1535]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-76.7249]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 5050.0
+56. Loss: 0.06512588262557983
+Action 0 - predicted reward: tensor([[0.1289]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9416]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3495.0
+56. Loss: 0.03192053735256195
+Action 0 - predicted reward: tensor([[0.5178]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[-0.0987]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 7930.0
+56. Loss: 106331.2265625
+3699.
+Action 0 - predicted reward: tensor([[0.1281]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-8.5249]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 5205.0
+57. Loss: 0.06386268138885498
+Action 0 - predicted reward: tensor([[0.0605]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.0254]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5085.0
+57. Loss: 0.06699627637863159
+Action 0 - predicted reward: tensor([[-0.1595]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[4.9875]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3570.0
+57. Loss: 0.03384597599506378
+Action 0 - predicted reward: tensor([[0.5651]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.3194]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 8005.0
+57. Loss: 105251.828125
+3799.
+Action 0 - predicted reward: tensor([[-0.5356]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-31.9864]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 5325.0
+59. Loss: 0.06532522290945053
+Action 0 - predicted reward: tensor([[-0.0963]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.1219]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5120.0
+59. Loss: 0.0693243145942688
+Action 0 - predicted reward: tensor([[0.1448]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.2168]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3605.0
+59. Loss: 0.025454053655266762
+Action 0 - predicted reward: tensor([[0.6153]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.6598]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 8065.0
+59. Loss: 103393.2734375
+3899.
+Action 0 - predicted reward: tensor([[0.0892]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.3417]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5400.0
+60. Loss: 0.07040663808584213
+Action 0 - predicted reward: tensor([[-0.0184]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.0015]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5160.0
+60. Loss: 0.06780447065830231
+Action 0 - predicted reward: tensor([[0.0518]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-30.6623]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3605.0
+60. Loss: 0.02334585413336754
+Action 0 - predicted reward: tensor([[0.6550]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.7184]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 8130.0
+60. Loss: 101949.875
+3999.
+Action 0 - predicted reward: tensor([[-0.2990]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-7.7709]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 5580.0
+62. Loss: 0.07372735440731049
+Action 0 - predicted reward: tensor([[0.1519]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-30.4640]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 5160.0
+62. Loss: 0.06458840519189835
+Action 0 - predicted reward: tensor([[0.0385]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-43.1875]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3680.0
+62. Loss: 0.030887139961123466
+Action 0 - predicted reward: tensor([[0.7017]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.7176]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 8180.0
+62. Loss: 99950.8046875
+4099.
+The mushroom was poisonous. The agent chose eat and got a reward of -35.0.
+Cumulative regret is 5720.0
+63. Loss: 0.08102397620677948
+Action 0 - predicted reward: tensor([[0.0369]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.4650]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5270.0
+63. Loss: 0.07401477545499802
+Action 0 - predicted reward: tensor([[0.0070]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-36.9049]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3750.0
+63. Loss: 0.02820388786494732
+Action 0 - predicted reward: tensor([[0.6933]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.7347]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 8255.0
+63. Loss: 99627.390625
+4199.
+Action 0 - predicted reward: tensor([[-0.0612]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.0969]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5790.0
+63. Loss: 0.0724392980337143
+Action 0 - predicted reward: tensor([[-0.0127]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.3850]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5340.0
+63. Loss: 0.06453372538089752
+Action 0 - predicted reward: tensor([[-0.1496]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-41.3677]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3820.0
+63. Loss: 0.022331003099679947
+Action 0 - predicted reward: tensor([[0.8204]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.5763]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 8260.0
+63. Loss: 93746.3828125
+4299.
+Action 0 - predicted reward: tensor([[-0.2641]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.0165]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5840.0
+63. Loss: 0.0734577476978302
+Action 0 - predicted reward: tensor([[-0.0606]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-68.4453]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 5480.0
+63. Loss: 0.07228776067495346
+Action 0 - predicted reward: tensor([[-0.0002]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-48.2192]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3855.0
+63. Loss: 0.02176312543451786
+Action 0 - predicted reward: tensor([[0.8930]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.9790]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 8305.0
+63. Loss: 90655.0625
+4399.
+Action 0 - predicted reward: tensor([[-0.1390]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.0439]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 6055.0
+63. Loss: 0.07548385113477707
+Action 0 - predicted reward: tensor([[-0.0702]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[2.2359]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5550.0
+63. Loss: 0.06175094097852707
+Action 0 - predicted reward: tensor([[0.1727]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.0111]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3925.0
+63. Loss: 0.028475148603320122
+Action 0 - predicted reward: tensor([[1.0678]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[0.6371]], grad_fn=<DivBackward0>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 8365.0
+63. Loss: 80801.0625
+4499.
+Action 0 - predicted reward: tensor([[-0.0771]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-25.7930]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 6195.0
+63. Loss: 0.07235962897539139
+Action 0 - predicted reward: tensor([[0.7174]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.4672]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5585.0
+63. Loss: 0.05764344334602356
+Action 0 - predicted reward: tensor([[0.0630]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-39.3596]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 3960.0
+63. Loss: 0.023699844256043434
+Action 0 - predicted reward: tensor([[1.1314]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[1.2035]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 8480.0
+63. Loss: 76399.171875
+4599.
+Action 0 - predicted reward: tensor([[-0.0543]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-14.8189]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 6195.0
+63. Loss: 0.06367713958024979
+Action 0 - predicted reward: tensor([[-0.2103]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-33.4876]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 5620.0
+63. Loss: 0.04720192030072212
+Action 0 - predicted reward: tensor([[0.3072]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[2.0081]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 3960.0
+63. Loss: 0.022118227556347847
+Action 0 - predicted reward: tensor([[1.2473]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[1.3119]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 8525.0
+63. Loss: 70357.015625
+4699.
+Action 0 - predicted reward: tensor([[0.0325]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[1.4929]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose eat and got a reward of -35.0.
+Cumulative regret is 6305.0
+63. Loss: 0.07826361060142517
+Action 0 - predicted reward: tensor([[1.3189]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.3957]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5660.0
+63. Loss: 0.04456282779574394
+Action 0 - predicted reward: tensor([[0.1780]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.1107]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 4030.0
+63. Loss: 0.020636556670069695
+Action 0 - predicted reward: tensor([[1.3337]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[1.3707]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 8530.0
+63. Loss: 66548.7265625
+4799.
+Action 0 - predicted reward: tensor([[0.0060]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-34.4926]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 6380.0
+63. Loss: 0.06557588279247284
+Action 0 - predicted reward: tensor([[-0.5177]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[5.1198]], grad_fn=<AddmmBackward>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 5660.0
+63. Loss: 0.041729193180799484
+Action 0 - predicted reward: tensor([[0.0263]], grad_fn=<AddmmBackward>)
+Action 1 - predicted reward: tensor([[-36.6634]], grad_fn=<AddmmBackward>)
+The mushroom was poisonous. The agent chose pass and got a reward of 0.
+Cumulative regret is 4030.0
+63. Loss: 0.01880369707942009
+Action 0 - predicted reward: tensor([[1.3899]], grad_fn=<DivBackward0>)
+Action 1 - predicted reward: tensor([[1.4759]], grad_fn=<DivBackward0>)
+The mushroom was edible. The agent chose eat and got a reward of 5.0.
+Cumulative regret is 8615.0
+63. Loss: 64296.609375

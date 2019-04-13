@@ -108,3 +108,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Graphical outputs
+/graphs
+
+# VSCode
+.vscode/
+=0.0.1a3
+

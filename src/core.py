@@ -135,14 +135,29 @@ class BayesianLayer(nn.Module):
     epsilon = self.normal_dist.sample(rho.size()).squeeze(-1)
     return mu + torch.log(1 + torch.exp(rho)) * epsilon
 
-  def forward(self, input_data, sample=False, debug=False):
+  def forward(self, input_data, sample=False, debug=False, 
+              averaged_weights=False, avg_weight_count=2):
+
     if self.training or sample:
-      weights = self._compute_gaussian_sample(self.mu_weights, self.rho_weights)
-      bias = self._compute_gaussian_sample(self.mu_bias, self.rho_bias)
-      if debug is True:
-        pass
-        # print("sampled weights:")
-        # print(weights)
+      
+      # for the bandits experiment, implement sampling and 
+      # averaging over individual weights
+      if averaged_weights:
+        sum_weights = torch.zeros_like(self.mu_weights)
+        sum_bias = torch.zeros_like(self.mu_bias)
+        for _ in range(avg_weight_count):
+           sum_weights += self._compute_gaussian_sample(
+             self.mu_weights, self.rho_weights)
+           sum_bias += self._compute_gaussian_sample(
+             self.mu_bias, self.rho_bias)
+        weights = sum_weights / avg_weight_count
+        bias = sum_bias / avg_weight_count
+      else:     
+        weights = self._compute_gaussian_sample(
+          self.mu_weights, self.rho_weights)
+        bias = self._compute_gaussian_sample(
+          self.mu_bias, self.rho_bias)
+
       self.log_prior = (self.prior_weights.log_prob(weights).sum() +
                         self.prior_bias.log_prob(bias).sum() )
       sigma_weights = torch.log(1 + torch.exp(self.rho_weights))
@@ -154,11 +169,11 @@ class BayesianLayer(nn.Module):
       )
 
       if torch.isnan(self.log_posterior):
-        print('Weights log prob: ')
-        print( dist.Normal(
-              self.mu_weights, sigma_weights).log_prob(weights).sum())
-        print('Bias log prob: ' )
-        print(dist.Normal(self.mu_bias, sigma_bias).log_prob(bias).sum())
+        print('Oops, nan in log_posterior')
+        print('log_posterior for weights is {}'.format(dist.Normal(
+          self.mu_weights, sigma_weights).log_prob(weights).sum()))
+        print('log_posterior for bias is {}'.format(dist.Normal(
+          self.mu_bias, sigma_bias).log_prob(bias).sum()))
     else:
       weights = self.mu_weights
       bias = self.mu_bias
@@ -221,10 +236,13 @@ class BayesianNN(nn.Module):
     self.output_size = self.layers[-1].output_size
     self.task_type = task_type
 
-  def forward(self, input_data, sample=True, debug=False):
+  def forward(self, input_data, sample=True, debug=False,
+              averaged_weights=False, avg_weight_count=2):
     current_data = input_data
     for layer in self.layers:
-      current_data = layer.forward(current_data, sample, debug=debug)
+      current_data = layer.forward(current_data, sample, debug=debug,
+                                   averaged_weights=averaged_weights,
+                                   avg_weight_count=avg_weight_count)
     if sample is False:
         print("not sampling.")
     return current_data
@@ -262,7 +280,7 @@ class BayesianNN(nn.Module):
     sum_log_posterior = 0
     sum_log_prior = 0
     sum_negative_log_likelihood = 0
-    for n in range(num_samples):
+    for _ in range(num_samples):
       outputs = self(inputs, sample=True)
       sum_log_posterior += self.log_posterior()
       sum_log_prior += self.log_prior()
