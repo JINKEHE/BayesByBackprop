@@ -330,7 +330,7 @@ if __name__ == '__main__':
     print("Test Accuracy/Error Std: {}".format(report_test_accu_std))
 
     # save result to results folder: using pickle
-    result_folder_path = "../../results/{}/".format(experiment_name)
+    result_folder_path = "../../results/mnist/{}/".format(experiment_name)
     if not os.path.exists(result_folder_path):
         os.mkdir(result_folder_path)
     with open(result_folder_path+"train_accu_lst.pkl", 'wb') as f:
