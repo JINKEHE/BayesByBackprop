@@ -176,6 +176,8 @@ if __name__ == '__main__':
     eg0_envs.append(eg0_env)
 
   bnn_loss = []
+  bnn_kl_divergence = []
+  bnn_nll = []
 
   eg5_regret = []
   eg1_regret = []
@@ -233,21 +235,32 @@ if __name__ == '__main__':
       avg_mushrooms_eaten = 0
       if is_bnn:
         avg_loss = 0
+        avg_kl_divergence = 0
+        avg_nll = 0
       for env in env_set:
-        loss = env.play_round(logs=logs)
+        if is_bnn:
+          loss, kl_divergence, nll = env.play_round(logs=logs)
+        else:
+          env.play_round(logs=logs)
         avg_regret += env.cumulative_regret
         avg_mushrooms_eaten += env.mushrooms_eaten
         avg_regret_from_eating += env.regret_from_eating
         avg_regret_from_passing += env.regret_from_passing
         if is_bnn:
           avg_loss += loss
+          avg_kl_divergence += kl_divergence
+          avg_nll += nll
       avg_regret /= args.number_of_runs
       avg_regret_from_eating /= args.number_of_runs
       avg_regret_from_passing /= args.number_of_runs
       avg_mushrooms_eaten /= args.number_of_runs
       if is_bnn:
         avg_loss /= args.number_of_runs
+        avg_kl_divergence /= args.number_of_runs
+        avg_nll /= args.number_of_runs 
         bnn_loss.append(avg_loss)
+        bnn_kl_divergence.append(avg_kl_divergence)
+        bnn_nll.append(avg_nll)
       regret.append(avg_regret)
       regret_eat.append(avg_regret_from_eating)
       regret_pass.append(avg_regret_from_passing)
@@ -258,6 +271,18 @@ if __name__ == '__main__':
       plt.legend()
       plt.ylabel('Loss')
       plt.savefig('results/{}/graphs/bnn_loss_{}'.format(args.experiment_name, i+1))
+      plt.clf()
+      
+      plt.plot(np.array(bnn_kl_divergence), label='BNN KL Divergence')
+      plt.legend()
+      plt.ylabel('KL Divergence')
+      plt.savefig('results/{}/graphs/bnn_kl_divergence_{}'.format(args.experiment_name, i+1))
+      plt.clf()
+
+      plt.plot(np.array(bnn_nll), label='BNN NLL')
+      plt.legend()
+      plt.ylabel('Negative Log Likelihood')
+      plt.savefig('results/{}/graphs/bnn_nll_{}'.format(args.experiment_name, i+1))
       plt.clf()
       
       for env_set, regret, _, _, _ in envs:

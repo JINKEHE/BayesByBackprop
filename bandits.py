@@ -25,6 +25,9 @@ POISONOUS_REWARD = -35.0
 EDIBLE_CONSTANT = 1.0
 POISONOUS_CONSTANT = -1.0
 
+#value used for gradient clipping
+CLIP_VALUE = 4
+
 '''The environment sends the agent the features of a mushroom.
 
 The agent can pick one of two actions:
@@ -134,7 +137,7 @@ class EGreedyNNAgent(Agent):
 
     past_plays_set = torch.utils.data.TensorDataset(features, rewards)
     past_plays_loader = torch.utils.data.DataLoader(
-        past_plays_set, batch_size=64, shuffle=True, num_workers=1)
+        past_plays_set, batch_size=64, shuffle=True, num_workers=4)
     
     avg_loss = 0
     
@@ -157,7 +160,7 @@ class EGreedyNNAgent(Agent):
     avg_loss /= len(past_plays_loader.dataset)
     
     if logs:
-      print('{}. Loss: {}'.format(i, avg_loss))
+      print('Loss: {}'.format(avg_loss))
     return avg_loss    
   
 
@@ -255,9 +258,11 @@ class BNNAgent(Agent):
 
     past_plays_set = torch.utils.data.TensorDataset(features, rewards)
     past_plays_loader = torch.utils.data.DataLoader(
-        past_plays_set, batch_size=64, shuffle=True, num_workers=1)
+        past_plays_set, batch_size=64, shuffle=True, num_workers=4)
     
     avg_loss = 0
+    avg_kl_divergence = 0
+    avg_nll = 0
     
     for i, data in enumerate(past_plays_loader):
       inputs, labels = data
@@ -268,19 +273,27 @@ class BNNAgent(Agent):
       self.optimizer.zero_grad()
 
       # forward + backward + optimize
-      loss, _, _ = self.value_estimates.cost_function(
+      loss, kl_divergence, nll = self.value_estimates.cost_function(
           inputs, labels, num_samples=2, num_batches=len(past_plays_loader))
       loss.backward()
       self.optimizer.step()
+      torch.nn.utils.clip_grad_norm_(self.value_estimates.parameters(),
+                                     CLIP_VALUE)
      
       avg_loss += loss
+      avg_kl_divergence += kl_divergence
+      avg_nll += nll
       
-    avg_loss /= len(past_plays_loader.dataset)
+    dataset_len = len(past_plays_loader.dataset)  
+    avg_loss /= dataset_len
+    avg_kl_divergence /= dataset_len
+    avg_nll /= dataset_len
     self.scheduler.step()
     
     if logs:
-      print('{}. Loss: {}'.format(i, avg_loss))
-    return avg_loss    
+      print('Loss: {}'.format(avg_loss))
+      print('KL Divergence: {}'.format(avg_kl_divergence))
+    return avg_loss.item(), avg_kl_divergence.item(), avg_nll.item()
       
 
 class Environment(object):
@@ -343,6 +356,6 @@ class Environment(object):
     # Send the reward information back to the agent for logging and variational
     # posterior update
     self.agent.update_memory(context, selected_action, reward)
-    loss = self.agent.update_variational_posterior(logs)
+    update_results = self.agent.update_variational_posterior(logs)
     
-    return loss.item()
+    return update_results
