@@ -22,7 +22,7 @@ from torch import optim
 from torch import nn
 from torch import distributions as dist
 
-sys.path.append('..')
+sys.path.append(os.path.abspath('src'))
 from core import *
 from bandits import *
 
@@ -95,7 +95,7 @@ if __name__ == '__main__':
 	# one-hot encoding. 
 	# The missing values (marked with ?) are treated as a different class for now.
 
-  mushroom_dataset = pd.read_csv('mushrooms.csv')
+  mushroom_dataset = pd.read_csv('src/bandits/mushrooms.csv')
   train_labels = mushroom_dataset['class']
   train_labels = train_labels.replace(['p', 'e'],
                                 [POISONOUS_CONSTANT, EDIBLE_CONSTANT])

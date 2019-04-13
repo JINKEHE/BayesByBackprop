@@ -15,4 +15,4 @@ python3 bandits_experiment.py \
      --averaged_weights \
      --initial_rho_weights_range -10 -9\
      --initial_rho_bias_range -10 -9\
-> results/Experiment010/logs.txt 
+> results/bandits/Experiment010/logs.txt 

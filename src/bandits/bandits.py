@@ -274,7 +274,7 @@ class BNNAgent(Agent):
 
       # forward + backward + optimize
       loss, kl_divergence, nll = self.value_estimates.cost_function(
-          inputs, labels, num_samples=2, num_batches=len(past_plays_loader))
+          inputs, labels, num_samples=2, ratio=1/len(past_plays_loader))
       loss.backward()
       self.optimizer.step()
       torch.nn.utils.clip_grad_norm_(self.value_estimates.parameters(),

@@ -135,7 +135,7 @@ class BayesianLayer(nn.Module):
     epsilon = self.normal_dist.sample(rho.size()).squeeze(-1)
     return mu + torch.log(1 + torch.exp(rho)) * epsilon
 
-  def forward(self, input_data, sample=False, 
+  def forward(self, input_data, sample=False, debug=False, 
               averaged_weights=False, avg_weight_count=2):
 
     if self.training or sample:

@@ -1,6 +1,6 @@
-cd .. 
-mkdir -p results/Experiment004
-python3 bandits_experiment.py \
+cd ../..
+mkdir -p results/bandits/Experiment004
+python3 src/bandits/bandits_experiment.py \
      --experiment_name Experiment004 \
      --optimizer_type  Adam \
      --eg_learning_rate 1e-3 \
@@ -12,4 +12,4 @@ python3 bandits_experiment.py \
      --bnn_log_sigma1 -3 \
      --bnn_log_sigma2 -8 \
      --averaged_weights \
-> results/Experiment004/logs.txt 
+> results/bandits/Experiment004/logs.txt 

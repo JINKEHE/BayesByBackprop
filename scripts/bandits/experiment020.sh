@@ -1,6 +1,6 @@
-cd .. 
-mkdir -p results/Experiment020
-python3 bandits_experiment.py \
+cd ../..
+mkdir -p results/bandits/Experiment020
+python3 src/bandits/bandits_experiment.py \
      --experiment_name Experiment020 \
      --optimizer_type  SGD \
      --eg_learning_rate 1e-3 \
@@ -13,4 +13,4 @@ python3 bandits_experiment.py \
      --initial_rho_weights_range -10 -9\
      --initial_rho_bias_range -10 -9\
      --number_of_runs 4 \
-> results/Experiment020/logs.txt 
+> results/bandits/Experiment020/logs.txt 
