@@ -1,4 +1,4 @@
-# AML-Project 
+# Reproducing Weight Uncertainty in Neural Networks
 
 ## Authors
 Lim Zun Yuan, Jinke He, Andreea-Alexandra Ganciulescu, Allan D'Silva
